@@ -34,9 +34,9 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle} >
-
-    </SafeAreaView>
+    <SafeAreaView style={backgroundStyle}>
+      <Text > uola </Text>
+    </SafeAreaView >
   );
 };
 
