@@ -1,0 +1,24 @@
+{
+	"Create Component Funcioal react native": {
+		"scope": "javascript,typescript",
+		"prefix": "ffff",
+		"body": [
+		"import React from 'react'",
+		"import { View, Text, TouchableOpacity } from 'react-native'",
+		
+		"const $1 = () => {",
+		
+		
+			"return (",
+				"<View>",
+					"<Text>HOME</Text>",
+				"</View> ",
+		
+			")",
+		"}",
+		
+		"export default $1 "
+		],
+		"description": "Create functional component react native"
+	}
+}
