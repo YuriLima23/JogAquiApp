@@ -22,7 +22,8 @@ const style = StyleSheet.create({
     btn:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+
 
     },
     btnText:{
