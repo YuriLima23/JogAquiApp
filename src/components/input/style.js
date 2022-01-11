@@ -10,18 +10,28 @@ const style = StyleSheet.create({
         flexDirection:'column',
         margin:metrics.marginLarge
     }, 
-    sectionShowPassword:{
+    sectionInput:{
         flexDirection:'row',
         borderWidth: metrics.borderWidh,
         borderRadius: metrics.borderRadius,
         justifyContent:"space-between",
         alignItems:'center'
 
+    }, 
+    sectionInputError:{
+        flexDirection:'row',
+        borderWidth: metrics.borderWidh,
+        borderRadius: metrics.borderRadius,
+        justifyContent:"space-between",
+        alignItems:'center',
+        borderColor:colors.red
+
+
     },
 
     input: {
+        flex:1,
         color: colors.dark,
-        
         marginHorizontal:metrics.marginLarge,
         paddingHorizontal:metrics.paddingLarge
     },
@@ -40,7 +50,6 @@ const style = StyleSheet.create({
     errorText: {
         fontSize: fonts.medium,
         color: colors.dark,
-        marginHorizontal:metrics.marginLarge,
         marginVertical:metrics.marginMedium,
         color: colors.red
     },

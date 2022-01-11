@@ -4,5 +4,6 @@ export const  colors = {
     background : "#E5E5E5",
     red:"red",
     blud:"blue",
+    placeholders:"#BCB3B3",
     
 }

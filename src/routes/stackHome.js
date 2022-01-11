@@ -27,14 +27,16 @@ const Stack = createNativeStackNavigator();
 const optionSplash = {
   headerShown: false
 }
-const optionLogin = {
+const optionLogin = ({navigation}) => {
   
+  return {
   title: null,
   headerStyle: {
     backgroundColor: colors.background
   },
   headerShadowVisible: false,
-  headerLeft: ({ goBack }) => <LeftArrow onPress={goBack} />
+  headerLeft: () => <LeftArrow onPress={() => navigation.goBack()} />
+}
 }
 
 const StackHome = () => {

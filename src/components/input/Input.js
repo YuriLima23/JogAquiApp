@@ -9,8 +9,8 @@ const Input = ({ error, messageError, placeholder, security }, rest) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.sectionShowPassword}>
-                <TextInput placeholder={placeholder} secureTextEntry={showEye} placeholderTextColor={colors.dark} style={!error ? styles.input : styles.inputError}  {...rest} />
+            <View style={!error ? styles.sectionInput: styles.sectionInputError}>
+                <TextInput placeholder={placeholder} secureTextEntry={showEye} placeholderTextColor={colors.placeholders} style={styles.input}  {...rest} />
                 {security &&
                     <Ionicons
                         style={styles.iconSecurity}

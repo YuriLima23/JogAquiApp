@@ -10,12 +10,18 @@ const LoginScreen = () => {
 
      return (
           <View style={styles.container}>
-               <View>
-                    <Input placeholder="CPF" />
+               <View style={styles.regionTitle}>
+                    <Text style={styles.title}>Entrar</Text>
                </View>
-               <View>
-                    <Input placeholder="SENHA" security/>
+               <View style={styles.regionInputs}>
+                    <Input style={styles.regionInputs} placeholder="(53) 9 99342007" />
+                    <Input placeholder="SENHA" security />
                </View>
+               <View style={styles.regionButtons}>
+
+               </View>
+
+
           </View>
      )
 }
