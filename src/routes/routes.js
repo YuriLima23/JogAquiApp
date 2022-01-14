@@ -3,4 +3,5 @@ export const routes = {
     login : "LoginScreen",
     register : "RegisterScreen",
     splash : "SplashScreen",
+    code : "CodeScreen",
 }

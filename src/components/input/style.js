@@ -33,7 +33,8 @@ const style = StyleSheet.create({
         flex:1,
         color: colors.dark,
         marginHorizontal:metrics.marginLarge,
-        paddingHorizontal:metrics.paddingLarge
+        paddingHorizontal:metrics.paddingLarge,
+        color:colors.dark
     },
      inputError: {
         color: colors.dark,

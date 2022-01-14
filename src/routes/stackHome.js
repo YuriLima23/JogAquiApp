@@ -20,24 +20,26 @@ import LoginScreen from '../pages/login';
 import { routes } from './routes';
 import { colors } from '../../globalStyle/colors';
 import LeftArrow from '../components/arrowLeft/left';
-import Feather from "react-native-vector-icons/Feather"
+import CodeScreen from '../pages/login/code';
 
 const Stack = createNativeStackNavigator();
 
 const optionSplash = {
   headerShown: false
 }
-const optionLogin = ({navigation}) => {
-  
+const optionLogin = ({ navigation }) => {
+
   return {
-  title: null,
-  headerStyle: {
-    backgroundColor: colors.background
-  },
-  headerShadowVisible: false,
-  headerLeft: () => <LeftArrow onPress={() => navigation.goBack()} />
+    title: null,
+    headerStyle: {
+      backgroundColor: colors.background
+    },
+    headerShadowVisible: false,
+    headerLeft: () => <LeftArrow onPress={() => navigation.goBack()} />
+  }
 }
-}
+
+
 
 const StackHome = () => {
 
@@ -49,6 +51,7 @@ const StackHome = () => {
         <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
         <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />
         <Stack.Screen name={routes.register} component={HomeScreen} />
+        <Stack.Screen name={routes.code} options={optionLogin} component={CodeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 

@@ -5,6 +5,9 @@ import { fonts } from '../../../globalStyle/fonts'
 import { metrics } from '../../../globalStyle/metrics'
 
 const style = StyleSheet.create({
+    scroll:{
+        flex:1,
+    },
     container: {
         flex: 1,
         backgroundColor: colors.background,
@@ -22,12 +25,17 @@ const style = StyleSheet.create({
         fontSize:35
     },
     regionInputs: {
-        flex:2,
-        justifyContent:'center'
+        flex:1.5,
+        justifyContent:'center',
+       
        
     },
     regionButtons: {
-        flex: 1
+        flex: 1,
+        alignItems:"center",
+        
+       
+       
     },
 
 

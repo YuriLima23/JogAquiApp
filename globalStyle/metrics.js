@@ -13,4 +13,7 @@ export const metrics = {
     paddingSmall:2,
     paddingMedium:5,
     paddingLarge:10,
+    widthScreen:Dimensions.get("screen").width,
+    heightScreen:Dimensions.get("screen").height
 }
+
