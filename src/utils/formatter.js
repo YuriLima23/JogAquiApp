@@ -6,3 +6,8 @@ export const PhoneFormatter = (phone) => {
     console.log(phone.length)
     return phone
 }
+
+export const formatterOnlyStrings = (value) => {
+    value = value.replace(/[^a-zA-Z\s]/g,"")
+    return value
+}

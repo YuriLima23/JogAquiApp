@@ -19,8 +19,9 @@ import SplashScreen from '../pages/splash';
 import LoginScreen from '../pages/login';
 import { routes } from './routes';
 import { colors } from '../../globalStyle/colors';
-import LeftArrow from '../components/arrowLeft/left';
-import CodeScreen from '../pages/login/code';
+import LeftArrow from '../components/arrowLeft/Left';
+import CodeScreen from '../pages/code';
+import RegisterScreen from '../pages/register';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,7 @@ const StackHome = () => {
         <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
         <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
         <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />
-        <Stack.Screen name={routes.register} component={HomeScreen} />
+        <Stack.Screen name={routes.register}  options={optionLogin} component={RegisterScreen} />
         <Stack.Screen name={routes.code} options={optionLogin} component={CodeScreen} />
       </Stack.Navigator>
     </NavigationContainer>

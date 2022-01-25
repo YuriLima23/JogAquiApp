@@ -14,16 +14,8 @@ const style = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    regionTitle: {
-        flex: 1,
-        justifyContent:'flex-end',
-        alignItems:'center',
-
-    },
-    title: {
-        color:colors.dark,
-        fontSize:35
-    },
+    
+   
     regionInputs: {
         flex:1.5,
         justifyContent:'center',

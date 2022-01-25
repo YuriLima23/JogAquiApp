@@ -3,7 +3,8 @@ import { useNavigation } from '@react-navigation/core'
 import { View, Text, Keyboard, TextInput } from 'react-native'
 import styles from "./style"
 
-import Button from '../../../components/button/button'
+import Button from '../../components/button/Button'
+import Title from '../../components/title/Title'
 
 
 const CodeScreen = () => {
@@ -40,10 +41,8 @@ const CodeScreen = () => {
       return (
 
             <View style={styles.container}>
+                  <Title>Validar Código</Title>
 
-                  <View style={styles.regionTitle}>
-                        <Text style={styles.title}>Entrar</Text>
-                  </View>
                   <View style={styles.regionCode}>
                         <TextInput
                               ref={code1Ref}

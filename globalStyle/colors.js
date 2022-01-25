@@ -5,5 +5,6 @@ export const  colors = {
     red:"red",
     blud:"blue",
     placeholders:"#BCB3B3",
+    transparent:"rgba(0,0,0,0.5)",
     
 }

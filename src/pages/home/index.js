@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import styles from './style'
 import { routes } from '../../routes/routes'
+import Loading from '../../components/loading/Loading'
+import Warning from '../../components/warning/Warning'
 
 const HomeScreen = () => {
 
@@ -15,7 +17,7 @@ const HomeScreen = () => {
      return (
           <View style={styles.container}>
                <View style={styles.sectionBtn}>
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity onPress={() => redirect(routes.register, null)} style={styles.btn}>
                          <Text style={styles.btnText}>Registrar</Text>
                     </TouchableOpacity>
                </View>
@@ -26,7 +28,8 @@ const HomeScreen = () => {
                          <Text style={styles.btnText}>Entrar</Text>
                     </TouchableOpacity>
                </View>
-
+               {/* <Loading show={false} /> */}
+               <Warning/>
           </View>
      )
 }
