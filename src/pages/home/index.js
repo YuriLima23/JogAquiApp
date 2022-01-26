@@ -29,7 +29,7 @@ const HomeScreen = () => {
                     </TouchableOpacity>
                </View>
                {/* <Loading show={false} /> */}
-               <Warning/>
+               {/* <Warning/> */}
           </View>
      )
 }

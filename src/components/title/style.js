@@ -6,9 +6,7 @@ import { metrics } from '../../../globalStyle/metrics'
 
 
 const style = StyleSheet.create({
-    container:{
-        flex:1
-    }, 
+   
     regionTitle: {
         flex: 1,
         justifyContent:'flex-end',
