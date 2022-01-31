@@ -5,4 +5,7 @@ export const routes = {
     splash : "SplashScreen",
     code : "CodeScreen",
     welcome : "WelcomeScreen",
+    drawer : "drawer",
+    demand : "DemandScreen",
+    recycle : "RecycleScreen",
 }

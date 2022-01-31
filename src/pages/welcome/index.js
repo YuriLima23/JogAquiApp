@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import styles from './style'
@@ -22,16 +22,16 @@ const WelcomeScreen = () => {
                </View>
                <View style={styles.regionCards}>
                     <View style={styles.regionCardsFirst}>
-                         <TouchableOpacity style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.recycle)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Reciclar</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Pedidos</Text>
                          </TouchableOpacity>
                     </View>
 
                     <View style={styles.regionCardsSecond}>
-                         <TouchableOpacity style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
                          <TouchableOpacity style={styles.regionButton}>

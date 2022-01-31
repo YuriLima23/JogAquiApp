@@ -24,6 +24,7 @@ import CodeScreen from '../pages/code';
 import RegisterScreen from '../pages/register';
 import WelcomeScreen from '../pages/welcome';
 import DrawerHome from './drawerHome';
+import DemandScreen from '../pages/demand';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,13 +50,13 @@ const StackHome = () => {
   return (
 
     <NavigationContainer >
-      <Stack.Navigator initialRouteName={routes.welcome}>
+      <Stack.Navigator initialRouteName={routes.drawer}>
         <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
         <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
         <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />
         <Stack.Screen name={routes.register}  options={optionLogin} component={RegisterScreen} />
         <Stack.Screen name={routes.code} options={optionLogin} component={CodeScreen} />
-        <Stack.Screen name={routes.welcome} options={optionSplash} component={DrawerHome} />
+        <Stack.Screen name={routes.drawer} options={optionSplash} component={DrawerHome} />
       </Stack.Navigator>
     </NavigationContainer>
 
