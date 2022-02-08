@@ -6,11 +6,13 @@ import { metrics } from '../../globalStyle/metrics'
         
 const style = StyleSheet.create({
     regionName:{
-        width: metrics.widthScreen *0.75 ,
-        height: metrics.heightScreen * 0.18,
+       flex:1,
         alignItems:"center",
         borderBottomColor:colors.dark,
         borderBottomWidth:2
+    },
+    regionMenu:{
+        flex:3
     },
     name:{
         fontSize:fonts.extraLarge,

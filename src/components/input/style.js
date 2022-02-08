@@ -31,7 +31,6 @@ const style = StyleSheet.create({
 
     input: {
         flex:1,
-        color: colors.dark,
         marginHorizontal:metrics.marginLarge,
         paddingHorizontal:metrics.paddingLarge,
         color:colors.dark

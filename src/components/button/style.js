@@ -15,6 +15,16 @@ const style = StyleSheet.create({
         borderColor:colors.dark,
         borderRadius:metrics.borderRadius
     },
+    smallButton:{
+        justifyContent:'center',
+        alignItems:'center',
+        width: metrics.screenWidth * 0.3,
+        height: metrics.screenHeight * 0.08,
+        margin:metrics.marginLarge,
+        borderWidth:1,
+        borderColor:colors.dark,
+        borderRadius:metrics.borderRadius
+    },
     textButton:{
         fontSize:fonts.large,
         color:colors.dark
