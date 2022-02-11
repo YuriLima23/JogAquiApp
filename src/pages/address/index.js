@@ -74,7 +74,7 @@ const AddressScreen = () => {
                               placeholder="apartamento  123"
                               messageError={complementError[1]} />
                          <View style={styles.regionButton}>
-                              <Button onPress={() => null} title="Proximo" />
+                              <Button onPress={() => navigation.navigate(routes.dateTime)} title="Proximo" />
                          </View>
                     </View>
                </ScrollView>

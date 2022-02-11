@@ -35,7 +35,7 @@ const SelectTypeScreen = () => {
                               <Image style={styles.imageTrash} source={require("../../../images/trash.png")} />
                               <Text style={styles.label}>Plastico</Text>
                          </View>
-                         <View style={styles.regionType}>
+                             <View style={styles.regionType}>
                               <Image style={styles.imageTrash} source={require("../../../images/trash.png")} />
                               <Text style={styles.label}>Papelão</Text>
                          </View>
@@ -50,13 +50,10 @@ const SelectTypeScreen = () => {
                               <Text style={styles.label}>Vidro</Text>
                          </View>
                     </View>
-
-
-
                </View>
                <View style={styles.regionButton}>
-                    <Button smallButton onPress={() => console.log("AAAAAAAA")} title="Cancelar" />
-                    <Button smallButton onPress={() => null} title="Solicitar" />
+                    <Button smallButton onPress={() =>  navigation.navigate(routes.recycle)} title="Cancelar" />
+                    <Button smallButton onPress={() => navigation.navigate(routes.recycle)} title="Solicitar" />
                </View>
           </View >
      )

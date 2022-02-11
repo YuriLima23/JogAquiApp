@@ -46,7 +46,7 @@ const CustomDrawer = (props) => {
 
 const DrawerHome = () => {
     return (
-        <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props}></CustomDrawer>} initialRouteName={routes.demand}>
+        <Drawer.Navigator drawerContent={(props) => <CustomDrawer {...props}></CustomDrawer>} initialRouteName={routes.recycle}>
             <Drawer.Screen name={routes.welcome} options={{title:"Menu", ...optionsWelcome }} component={WelcomeScreen} />
             <Drawer.Screen name={routes.demand} options={{ title:"Pedidos", header: (props) => <Header {...props}></Header> }} component={DemandScreen} />
             <Drawer.Screen name={routes.recycle} options={{ title:"Reciclar" , header: (props) => <Header {...props}></Header> }} component={RecycleScreen} />

@@ -54,7 +54,7 @@ const StackHome = () => {
   return (
 
     <NavigationContainer >
-      <Stack.Navigator initialRouteName={routes.selectType}>
+      <Stack.Navigator initialRouteName={routes.drawer}>
         <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
         <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
         <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />

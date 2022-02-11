@@ -51,8 +51,8 @@ const DateTimeScreen = () => {
                                    />
                          </TouchableOpacity>
                          <View style={styles.regionButton}>
-                              <Button smallButton onPress={() => null} title="Cancelar" />
-                              <Button smallButton onPress={() => null} title="Proximo" />
+                              <Button smallButton onPress={() => navigation.navigate(routes.recycle)} title="Cancelar" />
+                              <Button smallButton onPress={() => navigation.navigate(routes.selectType)} title="Proximo" />
                          </View>
                     </View>
                </ScrollView>

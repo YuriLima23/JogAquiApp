@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react'
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, Image, FlatList, AppRegistry } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import styles from './style'
 import { routes } from '../../routes/routes'
@@ -40,6 +40,7 @@ const DemandScreen = () => {
                          <Text style={styles.statusItem}>{item.status}</Text>
                     </View>
                     <View style={styles.regionItem}>
+                       
                          <View style={styles.regionImages}>
                               <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
                               <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
