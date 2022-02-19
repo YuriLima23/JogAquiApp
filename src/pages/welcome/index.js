@@ -34,7 +34,7 @@ const WelcomeScreen = () => {
                          <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.home)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Sair</Text>
                          </TouchableOpacity>
 
