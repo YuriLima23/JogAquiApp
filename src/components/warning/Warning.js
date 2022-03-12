@@ -1,21 +1,17 @@
-import React from 'react'
-import { Modal, View, Text, ActivityIndicator, TextInput, TouchableOpacityBase, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { Modal, View, Text, TouchableOpacity } from 'react-native'
 import { colors } from '../../../globalStyle/colors'
 import { metrics } from '../../../globalStyle/metrics'
 import Entypo from 'react-native-vector-icons/Entypo'
-
-import Title from '../title/Title'
 import styles from "./style"
-import Button from '../button/Button'
 import style from './style'
 
-const Warning = ({ show, message, success = true }) => {
-
+const Warning = ({ show, message, success = true, setWarning }) => {
     return (
         <Modal
             animationType="slide"
             transparent={true}
-            visible={true}
+            visible={show}
         >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
@@ -29,7 +25,7 @@ const Warning = ({ show, message, success = true }) => {
                     </View>
 
                     <View style={styles.regionButton}>
-                        <TouchableOpacity onPress={() => false} style={styles.btn}>
+                        <TouchableOpacity onPress={() => setWarning([false, "", false])} style={styles.btn}>
                             <Text style={styles.textBtn}>Entendi</Text>
                         </TouchableOpacity>
                     </View>

@@ -7,20 +7,28 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { getAuth } from './src/api/resouceUser';
+import Loading from './src/components/loading/Loading';
+import GeneralContext, { GeneralContextProvider } from './src/contexts/generalContext';
 import SplashScreen from './src/pages/splash';
 import StackHome from './src/routes/stackHome';
-import { authFirebase , listeningEventMessage} from './src/utils/Firebase';
+import { authFirebase, listeningEventMessage } from './src/utils/Firebase';
 
 import { getCanalNotification } from './src/utils/Notification';
 
 const App = () => {
   useEffect(() => {
-    authFirebase()
+   // authFirebase()
     getCanalNotification()
     listeningEventMessage()
+    getAuth()
   }, [])
 
-  return (<StackHome />);
+  return (
+    <GeneralContextProvider >
+      <StackHome />
+    </GeneralContextProvider>
+  );
 };
 
 

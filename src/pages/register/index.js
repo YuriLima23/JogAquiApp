@@ -1,13 +1,17 @@
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/core'
-import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, Keyboard, ScrollView, KeyboardAvoidingView, KeyboardAvoidingViewBase } from 'react-native'
+import { View, Keyboard, ScrollView } from 'react-native'
 import Button from '../../components/button/Button'
 import Input from '../../components/input/Input'
 import Title from '../../components/title/Title'
 import { routes } from '../../routes/routes'
 import { formatterOnlyStrings, PhoneFormatter } from '../../utils/formatter'
 import { validationConfimPassword, validationName, validationPassword, validationPhone } from '../../utils/validation'
+
 import styles from './style'
+import RegisterUserContext from '../../contexts/registerUserContext'
+import GeneralContext from '../../contexts/generalContext'
+import { requestCodePhone } from '../../utils/Firebase'
 
 const RegisterScreen = () => {
      const [phone, setPhone] = useState("");
@@ -19,29 +23,43 @@ const RegisterScreen = () => {
      const [nameError, setNameError] = useState([false, ""]);
      const [passwordError, setPasswordError] = useState([false, ""]);
      const [confirmPasswordError, setConfirmPasswordError] = useState([false, ""]);
-
+     const { setIsLoading, setWarning } = useContext(GeneralContext)
      const navigation = useNavigation()
 
+     useEffect(() => {
+
+     }, []);
 
      const handlerDisabledKeyboard = (text) => {
           setPhone(PhoneFormatter(text))
      }
-     const nextPage = () => {
-          navigation.navigate(routes.code)
+     const nextPage = (params) => {
+          navigation.navigate(routes.code, params)
      }
-     const validateForm = () => {
+     const validateForm = async () => {
+          setIsLoading(true)
           let isValid = validationFields()
-               if (isValid) {
-                    nextPage()
+          if (isValid) {
+               let phoneDDI = "+55 " + phone
+               const response = await requestCodePhone(phoneDDI)
+               if (response) {
+                    nextPage({ name, password, phoneDDI })
+               }else{
+                    setWarning([true, "Ops, Ocorreu um erro no nosso sistema , tente novamente mais tarde", false])
                }
+          }
           Keyboard.dismiss()
+          setIsLoading(false)
+         
 
      }
 
      const validationFields = () => {
           if (!phoneError[0] && !nameError[0] && !passwordError[0] && !confirmPasswordError[0]) {
-               return true
+               if (name != "" && phone != "" && password != "" && confirmPassword != "" && (confirmPassword == password))
+                    return true
           }
+          setWarning([true, "Ops! campos invalidos.", false])
           return false
      }
 
@@ -49,8 +67,7 @@ const RegisterScreen = () => {
           <View style={styles.container}>
                <ScrollView contentContainerStyle={styles.scroll} >
 
-
-                    <Title>Cadastrar-se</Title>
+                    <Title view={true}>Cadastrar-se</Title>
 
                     <View style={styles.regionInput}>
                          <Input

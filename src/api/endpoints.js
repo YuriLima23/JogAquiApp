@@ -1,3 +1,3 @@
-export default api = () => {
-
+export default endPoints = {
+    getAuthPath : "/users/capture/",
 }

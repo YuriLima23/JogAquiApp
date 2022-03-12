@@ -26,7 +26,7 @@ const style = StyleSheet.create({
     code :{
         borderBottomWidth:1,
         borderBottomColor:colors.dark,
-        width: metrics.screenWidth * 0.15,
+        width: metrics.screenWidth * 0.08,
         marginHorizontal:metrics.marginLarge,
         fontSize:fonts.large,
         textAlign:'center',

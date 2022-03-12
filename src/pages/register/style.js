@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     },
     regionInput:{
         width: metrics.widthScreen,
-        height:  metrics.heightScreen * 0.4,
+        height:  metrics.heightScreen * 0.52,
         justifyContent:'center'
     },
 
@@ -21,7 +21,8 @@ const style = StyleSheet.create({
     },
     scroll:{
         // flex:1,
-        height: metrics.heightScreen * 0.7,
+        height: metrics.heightScreen * 0.8,
+        
     },
 })
 export default style 

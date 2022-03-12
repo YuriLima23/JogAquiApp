@@ -196,6 +196,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.google.firebase:firebase-auth'
 
     implementation(project(':react-native-maps')){
        exclude group: 'com.google.android.gms', module: 'play-services-base'

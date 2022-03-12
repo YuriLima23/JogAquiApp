@@ -1,40 +1,47 @@
 {
-    "project_info": {
-        "project_number": "477691357210",
-        "project_id": "jogaaqui",
-        "storage_bucket": "jogaaqui.appspot.com"
-    },
-    "client": [{
-        "client_info": {
-            "mobilesdk_app_id": "1:477691357210:android:f52f7125402fa900fb09a3",
-            "android_client_info": {
-                "package_name": "com.jogaaqui"
-            }
-        },
-        "oauth_client": [{
-                "client_id": "477691357210-n902l0vjp851spsqhpm04cql8c5v3vis.apps.googleusercontent.com",
-                "client_type": 1,
-                "android_info": {
-                    "package_name": "com.jogaaqui",
-                    "certificate_hash": "a084b4ca5c371bdc58486e1a83da18140615ff2c"
-                }
-            },
-            {
-                "client_id": "477691357210-l49gopn815ee55ulcqp4r96pqqls8oin.apps.googleusercontent.com",
-                "client_type": 3
-            }
-        ],
-        "api_key": [{
-            "current_key": "AIzaSyApMOhQeGxWhzi0fvJhtCBCh6jS1WqsXF4"
-        }],
-        "services": {
-            "appinvite_service": {
-                "other_platform_oauth_client": [{
-                    "client_id": "477691357210-l49gopn815ee55ulcqp4r96pqqls8oin.apps.googleusercontent.com",
-                    "client_type": 3
-                }]
-            }
+  "project_info": {
+    "project_number": "477691357210",
+    "project_id": "jogaaqui",
+    "storage_bucket": "jogaaqui.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477691357210:android:f52f7125402fa900fb09a3",
+        "android_client_info": {
+          "package_name": "com.jogaaqui"
         }
-    }],
-    "configuration_version": "1"
+      },
+      "oauth_client": [
+        {
+          "client_id": "477691357210-89tugvkq9nnnvatc38tusonv57lcf3u9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jogaaqui",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "477691357210-l49gopn815ee55ulcqp4r96pqqls8oin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApMOhQeGxWhzi0fvJhtCBCh6jS1WqsXF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477691357210-l49gopn815ee55ulcqp4r96pqqls8oin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }
