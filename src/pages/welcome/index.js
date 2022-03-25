@@ -1,5 +1,5 @@
-import React, { useLayoutEffect } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, TouchableOpacity, BackHandler } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import styles from './style'
 import { routes } from '../../routes/routes'
@@ -10,6 +10,11 @@ import Title from '../../components/title/Title'
 const WelcomeScreen = () => {
 
      const navigation = useNavigation();
+
+     useEffect(() => {
+          BackHandler.addEventListener('hardwareBackPress', () => false);
+
+     }, []);
 
      const redirect = (route, params) => {
           navigation.navigate(route, params)

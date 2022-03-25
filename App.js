@@ -12,16 +12,16 @@ import Loading from './src/components/loading/Loading';
 import GeneralContext, { GeneralContextProvider } from './src/contexts/generalContext';
 import SplashScreen from './src/pages/splash';
 import StackHome from './src/routes/stackHome';
-import { authFirebase, listeningEventMessage } from './src/utils/Firebase';
+import { authFirebase, listenerAuth, listeningEventMessage } from './src/utils/Firebase';
 
 import { getCanalNotification } from './src/utils/Notification';
 
 const App = () => {
   useEffect(() => {
-   // authFirebase()
+    // authFirebase()
     getCanalNotification()
     listeningEventMessage()
-    getAuth()
+    // getAuth()
   }, [])
 
   return (

@@ -6,10 +6,10 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { CommonActions, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
@@ -29,6 +29,7 @@ import RecycleScreen from '../pages/recycle';
 import AddressScreen from '../pages/address';
 import DateTimeScreen from '../pages/datetime';
 import SelectTypeScreen from '../pages/selectTypes';
+import GeneralContext from '../contexts/generalContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,25 +48,40 @@ const optionLogin = ({ navigation }) => {
   }
 }
 
+export const routesSignIn = (navigation, user) => {
+  //   navigation.dispatch(
+  //    navigation.popToTop()
+  // );
+}
+
 
 
 const StackHome = () => {
+  const context = useContext(GeneralContext)
 
   return (
 
     <NavigationContainer >
       <Stack.Navigator initialRouteName={routes.register}>
-        <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
-        <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
-        <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />
-        <Stack.Screen name={routes.register}  options={optionLogin} component={RegisterScreen} />
-        <Stack.Screen name={routes.code} options={optionLogin} component={CodeScreen} />
-        <Stack.Screen name={routes.drawer} options={optionSplash} component={DrawerHome} />
+        {!context.isAutenticate() ?
+          <>
+            <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
+            <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
+            <Stack.Screen name={routes.login} options={optionLogin} component={LoginScreen} />
+            <Stack.Screen name={routes.register} options={optionLogin} component={RegisterScreen} />
+            <Stack.Screen name={routes.code} options={optionLogin} component={CodeScreen} />
+          </>
+          :
+          <>
+            <Stack.Screen name={routes.drawer} options={optionSplash} component={DrawerHome} />
+            <Stack.Screen name={routes.address} options={optionLogin} component={AddressScreen} />
+            <Stack.Screen name={routes.dateTime} options={optionLogin} component={DateTimeScreen} />
+            <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
+          </>
+        }
 
 
-        <Stack.Screen name={routes.address} options={optionLogin} component={AddressScreen} />
-        <Stack.Screen name={routes.dateTime} options={optionLogin} component={DateTimeScreen} />
-        <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
 

@@ -1,20 +1,31 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
-import { useNavigation } from '@react-navigation/core'
-import { View, Text, Keyboard, TextInput } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/core'
+import { View, TextInput } from 'react-native'
 import styles from "./style"
 
 import Button from '../../components/button/Button'
 import Title from '../../components/title/Title'
 import GeneralContext from '../../contexts/generalContext'
+import api from '../../api/service'
+import { exceptions, listenerAuth, requestCodePhone } from '../../utils/Firebase'
+
+import { routes } from '../../routes/routes'
+import { setItem } from '../../cache/storage'
+import { storageLabel } from '../../../config/configs'
 
 
 const CodeScreen = () => {
+
+      const router = useRoute()
+      const navigation = useNavigation()
+      const { setWarning, setIsLoading } = useContext(GeneralContext);
       const [code1, setCode1] = useState("")
       const [code2, setCode2] = useState("")
       const [code3, setCode3] = useState("")
       const [code4, setCode4] = useState("")
       const [code5, setCode5] = useState("")
       const [code6, setCode6] = useState("")
+      const [confirmCode, setConfirmCode] = useState(router.params.confirmCode)
 
       const code1Ref = useRef()
       const code2Ref = useRef()
@@ -23,14 +34,22 @@ const CodeScreen = () => {
       const code5Ref = useRef()
       const code6Ref = useRef()
 
-      const navigation = useNavigation()
-      const { setWarning } = useContext(GeneralContext);
 
       useEffect(() => {
+            listenerAuth(listenerFirebase)
+
+      }, []);
+
+      useEffect(() => {
+            nextFocusCode()
+      }, [code1, code2, code3, code4, code5, code6])
+
+
+      const nextFocusCode = () => {
+
             if (code1.length >= 1) {
                   code2Ref.current.focus()
             } if (code2.length >= 1) {
-                  console.log("Focou no 2")
                   code3Ref.current.focus()
             } if (code3.length >= 1) {
                   code4Ref.current.focus()
@@ -43,16 +62,60 @@ const CodeScreen = () => {
             if (code6.length >= 1) {
                   code1Ref.current.focus()
             }
-      }, [code1, code2, code3, code4, code5, code6])
+      }
 
-      const validateCodes = () => {
+      const listenerFirebase = async (user) => {
+            if (user) {
+                  try {
+                        const {status, data} = await api.post("/users", {
+                              phone: router.params.phoneDDI
+                        })
+                        if (status == 200) {
+                              setWarning([true, "Parabens por concluir nosso cadastro, Aproveite e recicle", true])
+                              setItem(storageLabel.token_user, data.token)
+                              navigation.navigate(routes.drawer)
+                        } else {
+                              navigation.goBack()
+                              setWarning([true, "Ops, Algo de errado aconteceu", false])
+                        }
+                  } catch (error) {
+                        console.log("Erro listener firebase register", error)
+                  }
+            }
+            console.log(user);
+            setIsLoading(false)
+      }
+
+      const validateFields = () => {
             if (code1 != "" && code2 != "" && code3 != "" && code4 != "" && code5 != "" && code6 != "") {
                   return true
             }
-            //da looping
-            //setWarning([true, "Alguns campos estão invalidos", false])
+            setWarning([true, "Alguns campos estão invalidos", false])
             return false
       }
+      const validateCodes = async () => {
+            setIsLoading(true)
+            try {
+                  if (validateFields()) {
+                        
+                        const res = await confirmCode.confirm(`${code1}${code2}${code3}${code4}${code5}${code6}`)
+                        if (res) {
+                              const response = await api.post("/users", { phone: router.params.phoneDDI })
+                              if (response.status == 200) {
+                                    let user = response.data.user
+                                    navigation.navigate(routes.drawer, { user })
+                              } else {
+                                    setWarning([true, "Ops, erro ao finalizar seu cadastro !", false])
+                              }
+                        }
+                  }
+            } catch (error) {
+                  console.log("Erro ao confirmar codigo", error)
+                  setWarning([true, exceptions(error), false])
+            }
+            setIsLoading(false)
+      }
+
       return (
 
             <View style={styles.container}>
@@ -104,13 +167,10 @@ const CodeScreen = () => {
                               maxLength={1}
                               style={styles.code} />
 
-
-
-
                   </View>
                   <View style={styles.regionButtons}>
-                        <Button onPress={() => false} title={"Entrar"}></Button>
-                        <Button title={"Reenviar codigo"}></Button>
+                        <Button onPress={() => validateCodes()} title={"Cadastrar"}></Button>
+                        <Button onPress={() => requestCodePhone(router.params.phoneDDI)} title={"Reenviar codigo"}></Button>
                   </View>
 
             </View>

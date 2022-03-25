@@ -9,9 +9,9 @@ import { formatterOnlyStrings, PhoneFormatter } from '../../utils/formatter'
 import { validationConfimPassword, validationName, validationPassword, validationPhone } from '../../utils/validation'
 
 import styles from './style'
-import RegisterUserContext from '../../contexts/registerUserContext'
 import GeneralContext from '../../contexts/generalContext'
-import { requestCodePhone } from '../../utils/Firebase'
+import { exceptions, requestCodePhone, signOutUser } from '../../utils/Firebase'
+import api from '../../api/service'
 
 const RegisterScreen = () => {
      const [phone, setPhone] = useState("");
@@ -27,7 +27,7 @@ const RegisterScreen = () => {
      const navigation = useNavigation()
 
      useEffect(() => {
-
+          signOutUser()
      }, []);
 
      const handlerDisabledKeyboard = (text) => {
@@ -40,19 +40,40 @@ const RegisterScreen = () => {
           setIsLoading(true)
           let isValid = validationFields()
           if (isValid) {
-               let phoneDDI = "+55 " + phone
-               const response = await requestCodePhone(phoneDDI)
-               if (response) {
-                    nextPage({ name, password, phoneDDI })
-               }else{
-                    setWarning([true, "Ops, Ocorreu um erro no nosso sistema , tente novamente mais tarde", false])
-               }
+               await sendForm()
           }
           Keyboard.dismiss()
           setIsLoading(false)
-         
+
 
      }
+
+     const sendForm = async () => {
+          try {
+               let phoneDDI = "+55 " + phone
+               let user = { phone: phoneDDI, name, password }
+
+               const response = await api.post("/cache/users", user)
+
+               if (response.status == 200) {
+                    let res  = await requestCodePhone(phoneDDI)
+                    if (!res) {
+                         console.log("entrou no error");
+                         throw "auth/send-code-register"
+                    }
+                    nextPage({ phoneDDI, confirmCode: res })
+
+               }
+          } catch (error) {
+               console.log("Error :" , error.response)
+               setWarning([true, exceptions(error), false])
+               return false 
+          }
+       
+
+     }
+
+
 
      const validationFields = () => {
           if (!phoneError[0] && !nameError[0] && !passwordError[0] && !confirmPasswordError[0]) {
