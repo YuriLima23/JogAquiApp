@@ -22,3 +22,12 @@ export const setItem = async (key, value) => {
     }
 
 }
+
+export const removeItem = async (key) => {
+    try {
+        await AsyncStorage.removeItem(key)
+    } catch (error) {
+        console.log("Erro  asyncStorage remove item", error)
+    }
+
+}

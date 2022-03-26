@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, TouchableOpacity, BackHandler } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 import styles from './style'
@@ -6,10 +6,12 @@ import { routes } from '../../routes/routes'
 import Loading from '../../components/loading/Loading'
 import Warning from '../../components/warning/Warning'
 import Title from '../../components/title/Title'
+import GeneralContext from '../../contexts/generalContext'
 
 const WelcomeScreen = () => {
 
      const navigation = useNavigation();
+     const context = useContext(GeneralContext)
 
      useEffect(() => {
           BackHandler.addEventListener('hardwareBackPress', () => false);
@@ -39,7 +41,7 @@ const WelcomeScreen = () => {
                          <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={() => redirect(routes.home)} style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => context.logout()} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Sair</Text>
                          </TouchableOpacity>
 

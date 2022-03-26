@@ -18,6 +18,7 @@ const CodeScreen = () => {
 
       const router = useRoute()
       const navigation = useNavigation()
+      const context = useContext(GeneralContext)
       const { setWarning, setIsLoading } = useContext(GeneralContext);
       const [code1, setCode1] = useState("")
       const [code2, setCode2] = useState("")
@@ -67,12 +68,14 @@ const CodeScreen = () => {
       const listenerFirebase = async (user) => {
             if (user) {
                   try {
-                        const {status, data} = await api.post("/users", {
+                        const { status, data } = await api.post("/users", {
                               phone: router.params.phoneDDI
                         })
+                        console.log('data listener', data)
                         if (status == 200) {
                               setWarning([true, "Parabens por concluir nosso cadastro, Aproveite e recicle", true])
                               setItem(storageLabel.token_user, data.token)
+                              await context.isAutenticate()
                               navigation.navigate(routes.drawer)
                         } else {
                               navigation.goBack()
@@ -97,16 +100,9 @@ const CodeScreen = () => {
             setIsLoading(true)
             try {
                   if (validateFields()) {
-                        
                         const res = await confirmCode.confirm(`${code1}${code2}${code3}${code4}${code5}${code6}`)
-                        if (res) {
-                              const response = await api.post("/users", { phone: router.params.phoneDDI })
-                              if (response.status == 200) {
-                                    let user = response.data.user
-                                    navigation.navigate(routes.drawer, { user })
-                              } else {
-                                    setWarning([true, "Ops, erro ao finalizar seu cadastro !", false])
-                              }
+                        if (!res) {
+                              setWarning([true, "Ops, erro ao finalizar seu cadastro !", false])
                         }
                   }
             } catch (error) {

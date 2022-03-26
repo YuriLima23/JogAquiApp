@@ -63,7 +63,7 @@ const StackHome = () => {
 
     <NavigationContainer >
       <Stack.Navigator initialRouteName={routes.register}>
-        {!context.isAutenticate() ?
+        {!context.isLogged ?
           <>
             <Stack.Screen name={routes.home} options={optionSplash} component={HomeScreen} />
             <Stack.Screen name={routes.splash} options={optionSplash} component={SplashScreen} />
