@@ -63,11 +63,12 @@ export const requestCodePhone = async (phone) => {
 
 }
 
-export const listenerAuth = async (listnerAuthFn) => {
+export const listenerAuth = (listnerAuthFn) => {
     try {
-        auth().onAuthStateChanged(listnerAuthFn);
+        return auth().onAuthStateChanged(listnerAuthFn);
     } catch (error) {
         console.log("ERRO LSITENET FIREBASE")
+        return false
     }
 }
 
@@ -86,7 +87,7 @@ export const signOutUser = async () => {
 export const exceptions = (exception) => {
 
     let error = exception.code || ""
-    if(exception.response){
+    if (exception.response) {
         error = exception.response.data
     }
     switch (error) {
@@ -96,6 +97,16 @@ export const exceptions = (exception) => {
             return "Erro ao solicitar o codigo, tente novamente!"
         case "auth/user-already-exist":
             return "Usuario já cadastrado com esse numero de telefone"
+        case "auth/error-register-user":
+            return "Erro ao registrar o usuario"
+        case "auth/session-expired":
+            return "Sessão expirada, faça login novamente"
+        case "auth/invalid-login":
+            return "Falha ao autenticar"
+        case "auth/invalid-login-server":
+            return "Erro no servidor, tente novamente mais tarde !"
+        case "auth/token_invalid":
+            return "Token invalido!"
         default:
             return "Algo de errado aconteceu, tente novamente mais tarde"
     }

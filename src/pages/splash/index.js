@@ -1,32 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useLayoutEffect } from 'react'
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { colors } from '../../../globalStyle/colors'
 import styles from './style'
 import * as Cache from "../../cache/storage"
 import { useNavigation } from '@react-navigation/core'
 import { routes } from '../../routes/routes'
+import { storageLabel } from '../../../config/configs'
+import GeneralContext from '../../contexts/generalContext'
+import api from '../../api/service'
+import endpoints from '../../api/endpoints'
+import { exceptions } from '../../utils/Firebase'
 
 const SplashScreen = () => {
     const navigation = useNavigation()
+    const context = useContext(GeneralContext)
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         statusLogin()
-
     }, [])
+
 
     const statusLogin = async () => {
         try {
-            const result = await Cache.getItem("token")
-            if (!result) {
-                navigation.navigate(routes.home)
+ 
+            let token = await Cache.getItem(storageLabel.token_user)
+         
+            if (token) {
+                const { status, data } = await api.post(endpoints.checkAuth, {
+                    token: token
+                })
+                if (status != 200) {
+                    throw "auth/session-expired"
+                }
+                context.autenticate(data.user)
             }else{
-                navigation.navigate(routes.home)
+                context.logout()
             }
         } catch (error) {
-            console.log("Erro status login ", error)
+            console.log(`Error splashs ${error}`)
+          
+            context.setWarning([true, exceptions(error), false])
         }
-
-
+       
     }
 
     return (

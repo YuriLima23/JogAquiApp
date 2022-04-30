@@ -37,8 +37,9 @@ const CodeScreen = () => {
 
 
       useEffect(() => {
-            listenerAuth(listenerFirebase)
-
+            let listener = listenerAuth(listenerFirebase)
+            console.log('listener', listener)
+            return listener
       }, []);
 
       useEffect(() => {
@@ -71,22 +72,19 @@ const CodeScreen = () => {
                         const { status, data } = await api.post("/users", {
                               phone: router.params.phoneDDI
                         })
-                        console.log('data listener', data)
                         if (status == 200) {
                               setWarning([true, "Parabens por concluir nosso cadastro, Aproveite e recicle", true])
                               setItem(storageLabel.token_user, data.token)
-                              await context.isAutenticate()
-                              navigation.navigate(routes.drawer)
+                              context.autenticate(data.user)
                         } else {
                               navigation.goBack()
                               setWarning([true, "Ops, Algo de errado aconteceu", false])
                         }
                   } catch (error) {
-                        console.log("Erro listener firebase register", error)
+                        setWarning([true, exceptions(error), false])
                   }
             }
             console.log(user);
-            setIsLoading(false)
       }
 
       const validateFields = () => {

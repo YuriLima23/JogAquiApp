@@ -11,7 +11,9 @@ const style = StyleSheet.create({
        backgroundColor: colors.background,
        flexDirection:'row',
        alignItems:'center',
-       justifyContent:'space-between'
+       justifyContent:'space-between',
+       elevation:10000,
+       zIndex:10000
     },
     imageLeft :{
         width: 38,

@@ -1,4 +1,7 @@
 export default endPoints = {
     getAuthPath : "/users/capture/",
-    registerUser: "/users"
+    registerUser: "/users",
+    checkAuth: "/checkAuth",
+    login: "/login",
+    logout: "/logout"
 }

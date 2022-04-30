@@ -1,3 +1,4 @@
-CONFIGURAR IOS 
-
- - VECTOR ICONS 
+Autenticação :
+0 - desautenticado
+1 - autenticado 
+2 - splash

@@ -7,6 +7,9 @@ import Loading from '../../components/loading/Loading'
 import Warning from '../../components/warning/Warning'
 import Title from '../../components/title/Title'
 import GeneralContext from '../../contexts/generalContext'
+import api from '../../api/service'
+import endpoints from '../../api/endpoints'
+import { exceptions } from '../../utils/Firebase'
 
 const WelcomeScreen = () => {
 
@@ -14,13 +17,30 @@ const WelcomeScreen = () => {
      const context = useContext(GeneralContext)
 
      useEffect(() => {
-          BackHandler.addEventListener('hardwareBackPress', () => false);
+          BackHandler.addEventListener('hardwareBackPress', () => null);
 
      }, []);
 
      const redirect = (route, params) => {
           navigation.navigate(route, params)
      }
+     const logout = async () => {
+          context.setIsLoading(true)
+          try {
+               const response = await api.post(endpoints.logout)
+
+               if (response.status != 200) {
+                    throw "Erro ao deslogar "
+               }
+
+          } catch (error) {
+               console.log('Erro ao logout context : ', error)
+               context.setWarning([true, exceptions(error), false])
+          }
+          context.logout()
+          context.setIsLoading(false)
+     }
+
 
      return (
           <View style={styles.container}>
@@ -41,7 +61,7 @@ const WelcomeScreen = () => {
                          <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={() => context.logout()} style={styles.regionButton}>
+                         <TouchableOpacity onPress={logout} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Sair</Text>
                          </TouchableOpacity>
 

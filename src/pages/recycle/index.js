@@ -7,7 +7,7 @@ import Geolocation from 'react-native-geolocation-service';
 import styles from './style'
 import { metrics } from '../../../globalStyle/metrics';
 import { colors } from '../../../globalStyle/colors';
-import style from './style';
+import Feather from "react-native-vector-icons/Feather"
 import { routes } from '../../routes/routes';
 
 const RecycleScreen = () => {
@@ -84,6 +84,9 @@ const RecycleScreen = () => {
                </MapView>
                <TouchableOpacity onPress={() => navigation.navigate(routes.address)} style={styles.buttonCreateRecicle}>
                     <Image source={require("../../../images/Recicle.png")} style={styles.imageButtonRecicle} />
+               </TouchableOpacity>
+               <TouchableOpacity onPress={() => navigation.navigate(routes.address)} style={styles.buttonCreateRecicle}>
+                    <Feather name="home" onPress={() => navigation.navigate(routes.welcome)} size={40} style={styles.iconRight} color={colors.dark}></Feather>
                </TouchableOpacity>
           </View >
      )

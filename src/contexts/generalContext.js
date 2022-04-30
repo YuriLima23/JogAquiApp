@@ -1,38 +1,46 @@
 
 
+import { useNavigation } from '@react-navigation/native';
 import React, { createContext, useState } from 'react'
 import { storageLabel } from '../../config/configs';
 import { getItem, removeItem, setItem } from '../cache/storage';
 import Loading from '../components/loading/Loading';
 import Warning from '../components/warning/Warning';
+import { exceptions } from '../utils/Firebase';
 
 
 const GeneralContext = createContext();
 
 export const GeneralContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const [warning, setWarning] = useState([false, "", false]); // mostrar, mensagem, sucesso
-    const [isLogged, setIsLogged] = useState(false); // mostrar, mensagem, sucesso
+    const [warning, setWarning] = useState([false, "", false]);
+    const [isLogged, setIsLogged] = useState(2);
+    const [tokenUser, setTokenUser] = useState("");
+    const [user, setUser] = useState("");
 
-    const isAutenticate = async () => {
-        try {
-            let loggin = await getItem(storageLabel.token_user)
-            if (loggin) {
-                setIsLogged(true)
-            } else {
-                setIsLogged(false)
-            }
-            return
-        } catch (error) {
-            console.log('Erro ao verificar autenticacao', error)
-            return null
-        }
+    const autenticate = async (user) => {
+    let token = await getItem(storageLabel.token_user)
+       setUser(user)
+       setIsLogged(1)
+       setTokenUser(token)
     }
+
+    // const loadingData = async () =>{
+    //     setIsSplash(true)
+    //     let token = await getItem(storageLabel.token_user)
+    //     console.log("TOEKN DATA : ", token)
+    //     setTokenUser(token)
+    //     setIsSplash(false)
+    // }
 
     const logout = async () => {
         removeItem(storageLabel.token_user)
-        isAutenticate()
+        setUser(null)
+        setTokenUser(null)
+        setIsLogged(0)
+
     }
+
 
 
 
@@ -40,9 +48,15 @@ export const GeneralContextProvider = ({ children }) => {
         <GeneralContext.Provider value={{
             setIsLoading,
             setWarning,
-            isAutenticate,
+            user,
+            setUser,
             isLogged,
-            logout
+            setIsLogged,
+            tokenUser,
+            setTokenUser,
+            logout,
+            autenticate,
+          
         }}>
             {children}
             <Loading show={isLoading} />

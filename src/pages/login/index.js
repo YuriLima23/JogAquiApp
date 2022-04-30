@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect , useContext} from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { View, Text, ScrollView, ScrollViewBase, Keyboard, KeyboardAvoidingView } from 'react-native'
 import Button from '../../components/button/Button'
@@ -8,6 +8,12 @@ import { routes } from '../../routes/routes'
 import { PhoneFormatter } from '../../utils/formatter'
 import { validationPhone } from '../../utils/validation'
 import Title from '../../components/title/Title'
+import api from '../../api/service'
+import endpoints from '../../api/endpoints'
+import GeneralContext from '../../contexts/generalContext'
+import { exceptions } from '../../utils/Firebase'
+import { setItem } from '../../cache/storage'
+import { storageLabel } from '../../../config/configs'
 
 
 const LoginScreen = () => {
@@ -16,9 +22,10 @@ const LoginScreen = () => {
      const [password, setPassword] = useState("")
 
      const [phoneError, setPhoneError] = useState([false, ""])
-     const [passwordError, setPasswordError] = useState([false,""])
+     const [passwordError, setPasswordError] = useState([false, ""])
 
      const navigation = useNavigation()
+     const context = useContext(GeneralContext);
 
      useEffect(() => {
 
@@ -26,19 +33,31 @@ const LoginScreen = () => {
      const handleChangePassword = () => {
           setChangeForPassword(!changeForPassword)
      }
-     const nextPage = () => {
-          navigation.navigate(routes.code)
-     }
-     const validateForm = () => {
-
-          if (!changeForPassword) {
+    
+     const validateForm = async () => {
+          context.setIsLoading(true)
+          try {
+              
                const test = validationPhone(phone, setPhoneError)
-               if (test) {
-                    nextPage()
-               } 
 
+               if (test) {
+                    const { status, data } = await api.post(endpoints.login, {
+                         password,
+                         phone: "55" + phone
+                    })
+                
+                    if (status == 200) {
+                         setItem(storageLabel.token_user, data.token_auth)
+                         context.autenticate(data)
+                    }
+               }
+          } catch (error) {
+               console.log(`Erro login : ${error}`)
+               context.setWarning([true, exceptions(error), false])
           }
+
           Keyboard.dismiss()
+          context.setIsLoading(false)
 
      }
      const handlerDisabledKeyboard = (text) => {
@@ -48,14 +67,20 @@ const LoginScreen = () => {
           }
           setPhone(PhoneFormatter(text))
      }
+     const validateFields = () => {
+          if (!password || passwordError || !phone || phoneError) {
+               return false
+          }
+          return true
+     }
 
      return (
 
           <View style={styles.container}>
                <ScrollView contentContainerStyle={styles.scroll}>
-                    
-                         <Title>Entrar</Title>
-               
+
+                    <Title>Entrar</Title>
+
                     {changeForPassword ?
                          <View style={styles.regionInputs}>
                               <Input onChangeText={(text) => handlerDisabledKeyboard(text)}
@@ -83,15 +108,15 @@ const LoginScreen = () => {
                                    error={phoneError[0]}
                                    maxLength={15}
                                    keyboardType={"phone-pad"}
-                                   onFocus={() => setPhoneError([false,""])}
+                                   onFocus={() => setPhoneError([false, ""])}
                                    onBlur={() => validationPhone(phone, setPhoneError)}
                                    placeholder="(53) 9 99342007"
                                    messageError={phoneError[1]} />
-                         
+
                          </View>
                     }
                     <View style={styles.regionButtons}>
-                         <Button onPress={() => validateForm()} title={changeForPassword ? "Entrar" : "Proximo"}></Button>
+                         <Button onPress={validateForm} title={changeForPassword ? "Entrar" : "Proximo"}></Button>
                          <Button onPress={handleChangePassword} title={changeForPassword ? "Acessar com codigo" : "Acessar com senha"}></Button>
                     </View>
                </ScrollView>
