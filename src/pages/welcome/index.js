@@ -10,6 +10,7 @@ import GeneralContext from '../../contexts/generalContext'
 import api from '../../api/service'
 import endpoints from '../../api/endpoints'
 import { exceptions } from '../../utils/Firebase'
+import { formatHour } from '../../utils/formatter'
 
 const WelcomeScreen = () => {
 
@@ -18,7 +19,7 @@ const WelcomeScreen = () => {
 
      useEffect(() => {
           BackHandler.addEventListener('hardwareBackPress', () => null);
-
+          console.log("Hora : ", formatHour(new Date()))
      }, []);
 
      const redirect = (route, params) => {
@@ -35,7 +36,7 @@ const WelcomeScreen = () => {
 
           } catch (error) {
                console.log('Erro ao logout context : ', error)
-               context.setWarning([true, exceptions(error), false])
+               context.setWarning([true, exceptions(error, context), false])
           }
           context.logout()
           context.setIsLoading(false)

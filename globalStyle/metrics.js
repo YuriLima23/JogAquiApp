@@ -10,9 +10,11 @@ export const metrics = {
     marginSmall:2,
     marginMedium:5,
     marginLarge:10,
+    marginExtraLarge:20,
     paddingSmall:2,
     paddingMedium:5,
     paddingLarge:10,
+    paddingExtraLarge:20,
     widthScreen:Dimensions.get("screen").width,
     heightScreen:Dimensions.get("screen").height
 }

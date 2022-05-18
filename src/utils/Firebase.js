@@ -84,9 +84,11 @@ export const signOutUser = async () => {
     }
 }
 
-export const exceptions = (exception) => {
+export const exceptions = (exception, context) => {
 
+    console.log("MOTIVO ERRO : ", exception)
     let error = exception.code || ""
+    
     if (exception.response) {
         error = exception.response.data
     }
@@ -100,6 +102,7 @@ export const exceptions = (exception) => {
         case "auth/error-register-user":
             return "Erro ao registrar o usuario"
         case "auth/session-expired":
+            context && context.logout()
             return "Sessão expirada, faça login novamente"
         case "auth/invalid-login":
             return "Falha ao autenticar"
@@ -107,6 +110,11 @@ export const exceptions = (exception) => {
             return "Erro no servidor, tente novamente mais tarde !"
         case "auth/token_invalid":
             return "Token invalido!"
+        case "solicitation/error-create":
+            return "Erro ao criar sua solicitação!"
+         case "solicitation/types-recicles-invalid":
+            return "Erro ao identificar os tipos de residuos selecionados!"
+        
         default:
             return "Algo de errado aconteceu, tente novamente mais tarde"
     }

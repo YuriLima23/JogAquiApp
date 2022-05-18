@@ -66,7 +66,7 @@ const RegisterScreen = () => {
                }
           } catch (error) {
                console.log("Error :" , error)
-               setWarning([true, exceptions(error), false])
+               setWarning([true, exceptions(error, context), false])
                return false 
           }
        

@@ -81,7 +81,7 @@ const CodeScreen = () => {
                               setWarning([true, "Ops, Algo de errado aconteceu", false])
                         }
                   } catch (error) {
-                        setWarning([true, exceptions(error), false])
+                        setWarning([true, exceptions(error, context), false])
                   }
             }
             console.log(user);
@@ -105,9 +105,19 @@ const CodeScreen = () => {
                   }
             } catch (error) {
                   console.log("Erro ao confirmar codigo", error)
-                  setWarning([true, exceptions(error), false])
+                  setWarning([true, exceptions(error, context), false])
             }
             setIsLoading(false)
+      }
+      const requestNewCode = async () => {
+            try {
+                  const response = await requestCodePhone(router.params.phoneDDI)
+                  console.log('new code', response)
+                  navigation.setOptions({ confirmCode: response })
+            } catch (error) {
+                  console.log("Erro Code ")
+                  setWarning([true, exceptions(error, context), false])
+            }
       }
 
       return (
@@ -164,7 +174,7 @@ const CodeScreen = () => {
                   </View>
                   <View style={styles.regionButtons}>
                         <Button onPress={() => validateCodes()} title={"Cadastrar"}></Button>
-                        <Button onPress={() => requestCodePhone(router.params.phoneDDI)} title={"Reenviar codigo"}></Button>
+                        <Button onPress={requestNewCode} title={"Reenviar codigo"}></Button>
                   </View>
 
             </View>

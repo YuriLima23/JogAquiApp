@@ -38,8 +38,8 @@ const SplashScreen = () => {
             }
         } catch (error) {
             console.log(`Error splashs ${error}`)
-          
-            context.setWarning([true, exceptions(error), false])
+            context.setWarning([true, exceptions(error, context), false])
+            context.logout()
         }
        
     }

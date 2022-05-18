@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useContext } from "react";
+import react, { useContext } from "react";
 import { storageLabel } from "../../config/configs";
 import { getItem, removeItem } from "../cache/storage";
 import GeneralContext from "../contexts/generalContext";
 const api = axios.create({
-  baseURL: "http://192.168.3.4:3333",
+  baseURL: "http://192.168.3.4:3334",
+  
+  
 });
 
 api.interceptors.request.use(async config => {
@@ -15,13 +17,11 @@ api.interceptors.request.use(async config => {
   return config
 })
 
-api.interceptors.response.use(async config => {
- 
-  console.log("Entrou no response")
-  if (config.status == 401) {
+api.interceptors.response.use(response => response, async error =>{
+  if (error.response.status == 401) {
     await removeItem(storageLabel.token_user)
   }
-  return config
+  return  Promise.reject(error)
 })
 
 

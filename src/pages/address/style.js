@@ -26,9 +26,27 @@ const style = StyleSheet.create({
         height: metrics.heightScreen * 0.8
     },
     regionFlatList: {
+        
 
+    },
+    containerInputFindAddress: {
+        flexDirection:"row",
+        alignItems:"center"
 
-    }, flatList: {
+    },iconFindAddress: {
+        color:colors.dark,
+        marginRight:10,
+
+    },
+    textAddress: {
+        flex:1,
+        marginHorizontal:metrics.marginLarge,
+        paddingHorizontal:metrics.paddingExtraLarge,
+        color:colors.dark,
+        borderRadius:metrics.borderRadius,
+        borderWidth:1,
+    }
+    , flatList: {
         borderWidth: 1,
         margin: metrics.marginLarge,
         borderRadius: 5,

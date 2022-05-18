@@ -53,7 +53,7 @@ const LoginScreen = () => {
                }
           } catch (error) {
                console.log(`Erro login : ${error}`)
-               context.setWarning([true, exceptions(error), false])
+               context.setWarning([true, exceptions(error, context), false])
           }
 
           Keyboard.dismiss()

@@ -12,3 +12,26 @@ export const formatterOnlyStrings = (value) => {
     return value
 }
 
+export const formatDate = (oldDate) => {
+    const date = new Date(Date.parse(oldDate));
+    console.log('oldaDate', oldDate)
+
+    if (date) {
+        return date.toLocaleDateString("pt-br")
+    }
+    return false
+
+}
+
+
+export const formatHour = (oldDate) => {
+    const date = new Date(Date.parse(oldDate));
+    let minute = date.getMinutes()
+    
+    if (date) {
+        return `${date.getHours()}:${minute < 10 ? `0${minute}` : minute}`
+       
+
+    }
+    return false
+}

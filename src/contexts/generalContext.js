@@ -1,7 +1,7 @@
 
 
 import { useNavigation } from '@react-navigation/native';
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { storageLabel } from '../../config/configs';
 import { getItem, removeItem, setItem } from '../cache/storage';
 import Loading from '../components/loading/Loading';
@@ -18,6 +18,12 @@ export const GeneralContextProvider = ({ children }) => {
     const [tokenUser, setTokenUser] = useState("");
     const [user, setUser] = useState("");
 
+    useEffect(() => {
+
+        checkAuth()
+      
+    }, []);
+    
     const autenticate = async (user) => {
     let token = await getItem(storageLabel.token_user)
        setUser(user)
@@ -25,21 +31,22 @@ export const GeneralContextProvider = ({ children }) => {
        setTokenUser(token)
     }
 
-    // const loadingData = async () =>{
-    //     setIsSplash(true)
-    //     let token = await getItem(storageLabel.token_user)
-    //     console.log("TOEKN DATA : ", token)
-    //     setTokenUser(token)
-    //     setIsSplash(false)
-    // }
-
     const logout = async () => {
         removeItem(storageLabel.token_user)
         setUser(null)
         setTokenUser(null)
         setIsLogged(0)
 
+
     }
+    const checkAuth = async () =>{
+        const token = await getItem(storageLabel.token_user)
+        console.log('token', token)
+        if(!token){
+            logout()
+        }
+    }
+
 
 
 

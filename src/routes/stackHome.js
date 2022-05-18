@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useEffect, useContext, useLayoutEffect } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 
 import { View, Text } from 'react-native';
 import { CommonActions, NavigationContainer } from '@react-navigation/native';
@@ -31,6 +31,9 @@ import DateTimeScreen from '../pages/datetime';
 import SelectTypeScreen from '../pages/selectTypes';
 import GeneralContext from '../contexts/generalContext';
 import Header from '../components/header/Header';
+import api from '../api/service';
+import { getItem } from '../cache/storage';
+import { storageLabel } from '../../config/configs';
 
 const Stack = createNativeStackNavigator();
 
