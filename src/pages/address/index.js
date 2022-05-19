@@ -14,6 +14,7 @@ import endpoints from '../../api/endpoints'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TextInput } from 'react-native-gesture-handler'
 import style from '../home/style'
+import { checkValue } from '../../utils/validation'
 
 const AddressScreen = () => {
      const [address, setAddress] = useState("");
@@ -33,7 +34,10 @@ const AddressScreen = () => {
 
     
      const nextPage = () => {
-          navigation.navigate(routes.code)
+
+          if(checkFields()){
+               navigation.navigate(routes.dateTime)
+          }
      }
      const AddressItem = ({ item }) => {
           const selectItem = () => {
@@ -79,6 +83,17 @@ const AddressScreen = () => {
           setAddressSelected([text, null])
      }
 
+     const checkFields = () =>{
+          if(!addressSelected[1]){
+               context.setWarning([true, "Selecione um endereço valido", false])
+               return false
+          }
+          else if(!checkValue(number)){
+               setNumberError([true, "Campo número obrigatório"])
+               return false
+          }
+          return true
+     }
 
      return (
           <View style={styles.container}>
@@ -105,13 +120,9 @@ const AddressScreen = () => {
                                              <Ionicons onPress={findAddresses} name='search-outline' style={styles.iconFindAddress} size={40} />
                                              :
                                              <ActivityIndicator size={40} color={colors.dark} />
-
-
-
                               }
 
                          </View>
-
 
                          {dataAddress.length > 0 && <FlatList style={styles.flatList} data={dataAddress} renderItem={AddressItem} />}
                     </View>
@@ -121,19 +132,17 @@ const AddressScreen = () => {
                          error={numberError[0]}
                          keyboardType={"phone-pad"}
                          onFocus={() => setNumberError([false, ""])}
+                         onBlur={() => setNumberError([false, ""]) }
                          placeholder="numero"
                          messageError={numberError[1]} />
 
                     <Input
-                         onChangeText={(text) => handlerDisabledKeyboard(text)}
+                         onChangeText={(text) => setComplement(text)}
                          value={complement}
-                         error={complementError[0]}
-                         keyboardType={"phone-pad"}
-                         onFocus={() => setComplementError([false, ""])}
-                         placeholder="apartamento  123"
-                         messageError={complementError[1]} />
+                         placeholder="Apartamento  123"
+                         />
                     <View style={styles.regionButton}>
-                         <Button onPress={() => navigation.navigate(routes.dateTime)} title="Proximo" />
+                         <Button onPress={nextPage} title="Proximo" />
                     </View>
                </View>
                {/* </ScrollView> */}

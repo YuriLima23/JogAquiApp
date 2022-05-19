@@ -79,7 +79,7 @@ const DateTimeScreen = () => {
                          value={time}
                          mode={"time"}
                          is24Hour={true}
-                         minimumDate={new Date()}
+                         minimumDate={new Date().getTime() * 60 * 60 * 1000}
                          display="default"
                          onChange={(event, selectedTime) => {
                               if (selectedTime) {

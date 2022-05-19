@@ -50,7 +50,7 @@ const WelcomeScreen = () => {
                </View>
                <View style={styles.regionCards}>
                     <View style={styles.regionCardsFirst}>
-                         <TouchableOpacity onPress={() => redirect(routes.recycle)} style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.selectType)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Reciclar</Text>
                          </TouchableOpacity>
                          <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>

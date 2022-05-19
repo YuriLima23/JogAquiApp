@@ -8,19 +8,25 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
-        justifyContent: "center"
+        justifyContent: "center",
+        
     },
     regionTitle: {},
     
     regionTypesRecycle: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-around"
+       width: metrics.screenWidth * 0.7,
+        flexWrap:"wrap",
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignSelf:"center",
+        paddingTop:metrics.paddingExtraLarge
+        
     },
     subRegionTypesRecicle:{
 
     },
     regionType: {
+
         justifyContent: "center",
         alignItems: "center",
         margin:metrics.marginLarge
