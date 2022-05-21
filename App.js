@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth } from './src/api/resouceUser';
 import Loading from './src/components/loading/Loading';
+import { CreateSolicitationProvider } from './src/contexts/createSolicitationContext';
 import GeneralContext, { GeneralContextProvider } from './src/contexts/generalContext';
 import SplashScreen from './src/pages/splash';
 import StackHome from './src/routes/stackHome';
@@ -26,7 +27,9 @@ const App = () => {
 
   return (
     <GeneralContextProvider >
-      <StackHome />
+      <CreateSolicitationProvider>
+        <StackHome />
+      </CreateSolicitationProvider>
     </GeneralContextProvider>
   );
 };

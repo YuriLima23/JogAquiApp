@@ -15,6 +15,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TextInput } from 'react-native-gesture-handler'
 import style from '../home/style'
 import { checkValue } from '../../utils/validation'
+import CreateSolicitationContext from '../../contexts/createSolicitationContext'
+import { removeNumbers } from '../../utils/formatter'
 
 const AddressScreen = () => {
      const [address, setAddress] = useState("");
@@ -31,11 +33,18 @@ const AddressScreen = () => {
 
      const navigation = useNavigation()
      const context = useContext(GeneralContext);
+     const contextSolicitation = useContext(CreateSolicitationContext);
 
     
      const nextPage = () => {
 
           if(checkFields()){
+               
+               contextSolicitation.setSolicitation({
+                     number,
+                     address : addressSelected[0],
+                     complement
+                    })
                navigation.navigate(routes.dateTime)
           }
      }
@@ -80,7 +89,13 @@ const AddressScreen = () => {
                setDataAddress([])
           }
 
-          setAddressSelected([text, null])
+          if(text.match(/\d/)){
+               context.setWarning([true, "Endereço deve conter apenas letras", false])
+          }
+
+
+
+          setAddressSelected([removeNumbers(text), null])
      }
 
      const checkFields = () =>{

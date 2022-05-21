@@ -9,12 +9,17 @@ import { metrics } from '../../../globalStyle/metrics';
 import { colors } from '../../../globalStyle/colors';
 import Feather from "react-native-vector-icons/Feather"
 import { routes } from '../../routes/routes';
+import api from '../../api/service';
+import endpoints from '../../api/endpoints';
+import { formatDate, formateStringDateAndTime } from '../../utils/formatter';
 
 const RecycleScreen = () => {
      const navigation = useNavigation()
      const [location, setLocation] = useState({ latitude: -23.5639552, longitude: -46.6559679 })
+     const [requestAddresses, setRequestAddresses] = useState([])
      useEffect(() => {
           requestPermissionLocation()
+          getRequestsSolicitations()
      }, [])
 
      const getLocation = () => {
@@ -59,6 +64,15 @@ const RecycleScreen = () => {
           }
      }
 
+     const getRequestsSolicitations = async () =>{
+          try {
+               const response = await api.get(endpoints.requestAddresses)
+               setRequestAddresses(response.data)
+          } catch (error) {
+               console.log('Error maps', error)    
+          }
+     }
+
      return (
           <View style={styles.container}>
                <MapView
@@ -74,12 +88,17 @@ const RecycleScreen = () => {
                          longitudeDelta: 0.0121,
                     }}
                >
-                    <Marker coordinate={{
-                         latitude: location.latitude,
-                         longitude: location.longitude,
-                         latitudeDelta: 0.015,
-                         longitudeDelta: 0.0121,
-                    }} title="VocÊ esta aqui" />
+                    {
+                         requestAddresses.map((item) => (
+                              <Marker coordinate={{
+                                   latitude: item.latitude,
+                                   longitude: item.longitude,
+                                   latitudeDelta: 0.015,
+                                   longitudeDelta: 0.0121,
+                              }} title={item.status} description={`Dia : ${ formateStringDateAndTime(item.date_of_collect).date} as ${ formateStringDateAndTime(item.date_of_collect).time}:  `} />
+                         ))
+                    }
+                  
 
                </MapView>
                <TouchableOpacity onPress={() => navigation.navigate(routes.address)} style={styles.buttonCreateRecicle}>

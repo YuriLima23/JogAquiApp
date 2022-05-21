@@ -19,18 +19,24 @@ const style = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignSelf:"center",
-        paddingTop:metrics.paddingExtraLarge
+        marginVertical:50
         
     },
     subRegionTypesRecicle:{
 
     },
     regionType: {
-
+        justifyContent: "center",
+        alignItems: "center",
+        margin:metrics.marginLarge
+    }, 
+    regionTypeSelected: {
+        backgroundColor:colors.red,
         justifyContent: "center",
         alignItems: "center",
         margin:metrics.marginLarge
     },
+   
     label: {
         color: colors.dark,
         fontSize: fonts.large
@@ -42,9 +48,8 @@ const style = StyleSheet.create({
     },
 
     regionButton: {
-        flex: 1,
+
         flexDirection: 'row',
-        marginTop: metrics.marginLarge,
         alignItems: 'center',
         justifyContent: "space-around"
     },

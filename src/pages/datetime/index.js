@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, Text, FlatList, ScrollView, TouchableOpacity, KeyboardAvoidingViewBase, ActivityIndicator, Keyboard } from 'react-native'
 import Button from '../../components/button/Button'
 import Input from '../../components/input/Input'
@@ -10,6 +10,7 @@ import { colors } from '../../../globalStyle/colors'
 import EntytoIcon from 'react-native-vector-icons/Entypo'
 import { DateFormatter } from '../../utils/formatter'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import CreateSolicitationContext from '../../contexts/createSolicitationContext'
 
 const DateTimeScreen = () => {
      const [time, setTime] = useState(new Date());
@@ -25,9 +26,14 @@ const DateTimeScreen = () => {
 
      let dateNow = new Date()
      const navigation = useNavigation()
+     const contextSolicitation = useContext(CreateSolicitationContext)
+     useEffect(() => {
+        console.log("SOLICITACAO : ", contextSolicitation.solicitation)
+     }, []);
 
      const nextPage = () => {
-          navigation.navigate(routes.code)
+          contextSolicitation.setSolicitation({...contextSolicitation.solicitation, time:time.getTime(), date: period} )
+          navigation.navigate(routes.selectType)
      }
 
      return (
@@ -52,7 +58,7 @@ const DateTimeScreen = () => {
                          </TouchableOpacity>
                          <View style={styles.regionButton}>
                               <Button smallButton onPress={() => navigation.navigate(routes.recycle)} title="Cancelar" />
-                              <Button smallButton onPress={() => navigation.navigate(routes.selectType)} title="Proximo" />
+                              <Button smallButton onPress={nextPage} title="Proximo" />
                          </View>
                     </View>
                </ScrollView>
@@ -79,7 +85,6 @@ const DateTimeScreen = () => {
                          value={time}
                          mode={"time"}
                          is24Hour={true}
-                         minimumDate={new Date().getTime() * 60 * 60 * 1000}
                          display="default"
                          onChange={(event, selectedTime) => {
                               if (selectedTime) {

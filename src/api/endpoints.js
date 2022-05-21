@@ -6,5 +6,7 @@ export default endPoints = {
     logout: "/logout",
     demands: "/solicitations/user",
     findAddresses: "/find/address",
-    requestTypesAvailable: "/types_recicles"
+    requestTypesAvailable: "/types_recicles",
+    makeSolicitation: "/solicitations",
+    requestAddresses: "/solicitations/user",
 }
