@@ -12,6 +12,7 @@ import { exceptions, listenerAuth, requestCodePhone } from '../../utils/Firebase
 import { routes } from '../../routes/routes'
 import { setItem } from '../../cache/storage'
 import { storageLabel } from '../../../config/configs'
+import endpoints from '../../api/endpoints'
 
 
 const CodeScreen = () => {
@@ -68,18 +69,31 @@ const CodeScreen = () => {
 
       const listenerFirebase = async (user) => {
             if (user) {
+
                   try {
-                        const { status, data } = await api.post("/users", {
-                              phone: router.params.phoneDDI
-                        })
-                        if (status == 200) {
-                              setWarning([true, "Parabens por concluir nosso cadastro, Aproveite e recicle", true])
-                              setItem(storageLabel.token_user, data.token)
-                              context.autenticate(data.user)
+                        if (!router.params.auth) {
+                              const { status, data } = await api.post("/users", {
+                                    phone: router.params.phoneDDI
+                              })
+                              if (status == 200) {
+                                    setWarning([true, "Parabens por concluir nosso cadastro, Aproveite e recicle", true])
+                                    setItem(storageLabel.token_user, data.token)
+                                    context.autenticate(data.user)
+                              } else {
+                                    navigation.goBack()
+                                    setWarning([true, "Ops, Algo de errado aconteceu", false])
+                              }
                         } else {
-                              navigation.goBack()
-                              setWarning([true, "Ops, Algo de errado aconteceu", false])
+                              const { status, data } = await api.post(endpoints.authWithoutPassword, {
+                                    phone: router.params.phoneDDI
+                              })
+
+                              if (status == 200) {
+                                    setItem(storageLabel.token_user, data.token_auth)
+                                    context.autenticate(data)
+                              }
                         }
+
                   } catch (error) {
                         setWarning([true, exceptions(error, context), false])
                   }
@@ -173,7 +187,7 @@ const CodeScreen = () => {
 
                   </View>
                   <View style={styles.regionButtons}>
-                        <Button onPress={() => validateCodes()} title={"Cadastrar"}></Button>
+                        <Button onPress={() => validateCodes()} title={!router.params.auth ? "Cadastrar" : "Entrar"}></Button>
                         <Button onPress={requestNewCode} title={"Reenviar codigo"}></Button>
                   </View>
 

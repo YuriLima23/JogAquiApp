@@ -34,6 +34,7 @@ import Header from '../components/header/Header';
 import api from '../api/service';
 import { getItem } from '../cache/storage';
 import { storageLabel } from '../../config/configs';
+import WalletScreen from '../pages/wallet';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,11 +80,12 @@ const StackHome = () => {
           context.isLogged == 1 ?
             <>
               <Stack.Screen name={routes.welcome} options={{ headerShown: false }} component={WelcomeScreen} />
+              <Stack.Screen name={routes.wallet} options={optionLogin} component={WalletScreen} />
               <Stack.Screen name={routes.address} options={optionLogin} component={AddressScreen} />
               <Stack.Screen name={routes.dateTime} options={optionLogin} component={DateTimeScreen} />
               <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
               <Stack.Screen name={routes.demand} options={{ title: "Pedidos", header: (props) => <Header {...props}></Header> }} component={DemandScreen} />
-              <Stack.Screen name={routes.recycle} options={{ title: "Reciclar", header: (props) => <Header {...props}></Header> }} component={RecycleScreen} />
+              <Stack.Screen name={routes.recycle} options={{ headerShown: false }} component={RecycleScreen} />
 
             </>
             :

@@ -59,7 +59,7 @@ const WelcomeScreen = () => {
                     </View>
 
                     <View style={styles.regionCardsSecond}>
-                         <TouchableOpacity onPress={() => redirect(routes.demand)} style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.wallet)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
                          <TouchableOpacity onPress={logout} style={styles.regionButton}>

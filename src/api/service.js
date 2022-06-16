@@ -4,8 +4,8 @@ import { storageLabel } from "../../config/configs";
 import { getItem, removeItem } from "../cache/storage";
 import GeneralContext from "../contexts/generalContext";
 const api = axios.create({
+  //baseURL: "http://172.30.151.210:3334",
   baseURL: "http://192.168.3.4:3334",
-  
   
 });
 

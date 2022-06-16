@@ -53,6 +53,8 @@ export const requestCodePhone = async (phone) => {
 
     if (phone == "" || !phone) throw "Telefone invalido."
     phone = phone.replace(/\D/g, "")
+    console.log('phone', phone)
+    await auth().signOut()
 
     const response = await auth().signInWithPhoneNumber("+" + phone)
     console.log("RESPOSTA : ", response)
@@ -72,6 +74,7 @@ export const listenerAuth = (listnerAuthFn) => {
     }
 }
 
+
 export const signOutUser = async () => {
     try {
         const user = await auth().currentUser
@@ -88,7 +91,7 @@ export const exceptions = (exception, context) => {
 
     console.log("MOTIVO ERRO : ", exception)
     let error = exception.code || ""
-    
+
     if (exception.response) {
         error = exception.response.data
     }
@@ -112,9 +115,11 @@ export const exceptions = (exception, context) => {
             return "Token invalido!"
         case "solicitation/error-create":
             return "Erro ao criar sua solicitação!"
-         case "solicitation/types-recicles-invalid":
+        case "auth/invalid-phone-number":
+            return "Numero de telefone não identificado!"
+        case "solicitation/types-recicles-invalid":
             return "Erro ao identificar os tipos de residuos selecionados!"
-        
+
         default:
             return "Algo de errado aconteceu, tente novamente mais tarde"
     }

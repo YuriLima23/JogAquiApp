@@ -1,5 +1,6 @@
 export const routes = {
     home: "HomeScreen",
+    wallet: "WalletScreen",
     login: "LoginScreen",
     register: "RegisterScreen",
     splash: "SplashScreen",

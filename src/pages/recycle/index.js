@@ -20,7 +20,7 @@ const RecycleScreen = () => {
      useEffect(() => {
           requestPermissionLocation()
           getRequestsSolicitations()
-     }, [])
+     }, [navigation])
 
      const getLocation = () => {
           try {

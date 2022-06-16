@@ -9,4 +9,5 @@ export default endPoints = {
     requestTypesAvailable: "/types_recicles",
     makeSolicitation: "/solicitations",
     requestAddresses: "/solicitations/user",
+    authWithoutPassword: "/login/code",
 }

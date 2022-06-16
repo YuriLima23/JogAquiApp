@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigation } from '@react-navigation/core'
 import { View, Text, ScrollView, ScrollViewBase, Keyboard, KeyboardAvoidingView } from 'react-native'
 import Button from '../../components/button/Button'
@@ -11,7 +11,7 @@ import Title from '../../components/title/Title'
 import api from '../../api/service'
 import endpoints from '../../api/endpoints'
 import GeneralContext from '../../contexts/generalContext'
-import { exceptions } from '../../utils/Firebase'
+import { checkPhoneFirebase, exceptions, requestCodePhone } from '../../utils/Firebase'
 import { setItem } from '../../cache/storage'
 import { storageLabel } from '../../../config/configs'
 
@@ -33,23 +33,36 @@ const LoginScreen = () => {
      const handleChangePassword = () => {
           setChangeForPassword(!changeForPassword)
      }
-    
+
      const validateForm = async () => {
           context.setIsLoading(true)
           try {
-              
+
                const test = validationPhone(phone, setPhoneError)
 
                if (test) {
-                    const { status, data } = await api.post(endpoints.login, {
-                         password,
-                         phone: "55" + phone
-                    })
-                
-                    if (status == 200) {
-                         setItem(storageLabel.token_user, data.token_auth)
-                         context.autenticate(data)
+                    if (changeForPassword) {
+                         const { status, data } = await api.post(endpoints.login, {
+                              password,
+                              phone: "55" + phone
+                         })
+
+                         if (status == 200) {
+                              setItem(storageLabel.token_user, data.token_auth)
+                              context.autenticate(data)
+                         }
+                    } else {
+                         const phoneDDI = `55${phone}`
+                         const confirmCode = await requestCodePhone(phoneDDI)
+                         
+                         if(!confirmCode){
+                              context.setWarning([true, exceptions('auth/invalid-login-server', context), false])
+                              return
+                         }
+                         navigation.navigate(routes.code, { confirmCode:confirmCode , phoneDDI:phoneDDI , auth:true })
+
                     }
+
                }
           } catch (error) {
                console.log(`Erro login : ${error}`)

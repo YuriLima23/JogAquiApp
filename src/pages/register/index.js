@@ -50,7 +50,7 @@ const RegisterScreen = () => {
 
      const sendForm = async () => {
           try {
-               let phoneDDI = "+55 " + phone
+               let phoneDDI = "55 " + phone
                let user = { phone: phoneDDI, name, password }
 
                const response = await api.post("/cache/users", user)
@@ -61,7 +61,7 @@ const RegisterScreen = () => {
                          console.log("entrou no error");
                          throw "auth/send-code-register"
                     }
-                    nextPage({ phoneDDI, confirmCode: res })
+                    nextPage({ phoneDDI, confirmCode: res, auth:true })
 
                }
           } catch (error) {
