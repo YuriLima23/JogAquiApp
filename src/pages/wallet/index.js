@@ -6,54 +6,72 @@ import styles from './style'
 import GeneralContext from '../../contexts/generalContext'
 
 import CreateSolicitationContext from '../../contexts/createSolicitationContext'
+import api from '../../api/service'
+import endpoints from '../../api/endpoints'
+import { exceptions } from '../../utils/Firebase'
+import { metrics } from '../../../globalStyle/metrics'
+import { colors } from '../../../globalStyle/colors'
 
 const WalletScreen = () => {
 
+     const [dataWallet, setDataWallet] = useState();
      const navigation = useNavigation()
      const context = useContext(GeneralContext);
      const contextSolicitation = useContext(CreateSolicitationContext);
 
+     useEffect(() => {
+          const unsubscribe = navigation.addListener('focus', () => {
+               getDataWallet()
+          });
+          return unsubscribe;
 
-     const nextPage = () => {
-
-
+     }, [navigation])
+     const getDataWallet = async () => {
+          try {
+               const response = await api.get(endpoints.getDataWallet)
+               console.log('response', response.data)
+               setDataWallet(response.data)
+          } catch (error) {
+               console.log('Erro ao recuperar os dados da carteira')
+               context.setWarning([true, exceptions(error), false])
+          }
      }
-     var array = [
-          { id: 1, address: "Rua cecyra fallace saraiva, 815 ", money: 10.50 },
-          { id: 2, address: "Rua cecyra fallace saraiva, 816 ", money: 10.50 },
-          { id: 3, address: "Rua cecyra fallace saraiva com mais algum texto, 817 ", money: 10.50 },
-          { id: 4, address: "Rua cecyra fallace saraiva, 818 ", money: 10.50 },
-          { id: 5, address: "Rua cecyra fallace saraiva, 819 ", money: 10.50 }
-     ]
 
-     const Item = ({item}) => {
-          console.log("ITEM :", item.id)
-          return<View style={styles.regionItem}>
+
+     const Item = ({ item }) => {
+          console.log("ITEM : ", item);
+          return <View style={styles.regionItem}>
                <View style={styles.regionAddressItem}>
                     <Text style={styles.textAddressItem}>{item.address}</Text>
                </View>
                <View style={styles.regionMoneyItem}>
-                    <Text style={styles.textMoneyItem}>{item.money}</Text>
+                    <Text style={styles.textMoneyItem}>R$: {item.total}</Text>
                </View>
           </View>
      }
 
+     if (!dataWallet) {
+          return <ActivityIndicator size={metrics.widthScreen * 0.18} color={colors.dark} ></ActivityIndicator>
+
+     }
      return (
           <View style={styles.container}>
                <View style={styles.regionName}>
-                    <Text style={styles.name}>{context.user.name }</Text>
+                    <Text style={styles.name}>{context.user.name}</Text>
                </View>
                <View style={styles.regionWallet}>
                     <View style={styles.regionValueWallet}>
-                         <Text style={styles.valueWallet}>Saldo: R$ 50,20</Text>
+                         <Text style={styles.valueWallet}>Saldo: R$ {dataWallet.balance.toFixed(2)}</Text>
                     </View>
                     <View style={styles.regionNumberOfCollect}>
-                         <Text style={styles.valueCollect}>Pedidos Coletados: 13 </Text>
+                         <Text style={styles.valueCollect}>Pedidos Coletados: {dataWallet.solicitations.length} </Text>
                     </View>
                </View>
                <View style={styles.regionList}>
-                    <FlatList  data={array} renderItem={(props) => <Item {...props} />} />
-
+                    {dataWallet.solicitations.length > 0 ? <FlatList data={dataWallet.solicitations} renderItem={(props) => <Item {...props} />} />
+                         :
+                         <Text style={styles.textNotFound}>Nem uma solicitação consolidada.</Text>
+                    }
                </View>
 
           </View >

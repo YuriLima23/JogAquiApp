@@ -16,8 +16,8 @@ export const removeNumbers = (value) =>{
     return value
 }
 export const formatDate = (oldDate) => {
-    const date = new Date(Date.parse(oldDate));
-    console.log('oldaDate', oldDate)
+    const date = new Date(oldDate);
+    
 
     if (date) {
         return date.toLocaleDateString("pt-br")

@@ -29,7 +29,7 @@ const SplashScreen = () => {
                 const { status, data } = await api.post(endpoints.checkAuth, {
                     token: token
                 })
-                if (status != 200) {
+                if (status && status != 200) {
                     throw "auth/session-expired"
                 }
                 context.autenticate(data.user)

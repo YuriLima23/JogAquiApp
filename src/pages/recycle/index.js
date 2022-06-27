@@ -18,8 +18,12 @@ const RecycleScreen = () => {
      const [location, setLocation] = useState({ latitude: -23.5639552, longitude: -46.6559679 })
      const [requestAddresses, setRequestAddresses] = useState([])
      useEffect(() => {
-          requestPermissionLocation()
-          getRequestsSolicitations()
+          const unsubscribe = navigation.addListener('focus', () => {
+               requestPermissionLocation()
+               getRequestsSolicitations()
+          });
+          return unsubscribe;
+
      }, [navigation])
 
      const getLocation = () => {
@@ -64,12 +68,13 @@ const RecycleScreen = () => {
           }
      }
 
-     const getRequestsSolicitations = async () =>{
+     const getRequestsSolicitations = async () => {
           try {
+               console.log('Atualizou mapa')
                const response = await api.get(endpoints.requestAddresses)
                setRequestAddresses(response.data)
           } catch (error) {
-               console.log('Error maps', error)    
+               console.log('Error maps', error)
           }
      }
 
@@ -90,15 +95,15 @@ const RecycleScreen = () => {
                >
                     {
                          requestAddresses.map((item) => (
-                              <Marker coordinate={{
+                              <Marker key={item.id} coordinate={{
                                    latitude: item.latitude,
                                    longitude: item.longitude,
                                    latitudeDelta: 0.015,
                                    longitudeDelta: 0.0121,
-                              }} title={item.status} description={`Dia : ${ formateStringDateAndTime(item.date_of_collect).date} as ${ formateStringDateAndTime(item.date_of_collect).time}:  `} />
+                              }} title={item.status} description={`Dia : ${formateStringDateAndTime(item.date_of_collect).date} as ${formateStringDateAndTime(item.date_of_collect).time}:  `} />
                          ))
                     }
-                  
+
 
                </MapView>
                <TouchableOpacity onPress={() => navigation.navigate(routes.address)} style={styles.buttonCreateRecicle}>

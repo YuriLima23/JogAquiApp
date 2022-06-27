@@ -13,7 +13,7 @@ import GeneralContext from '../../contexts/generalContext'
 import { exceptions, requestCodePhone, signOutUser } from '../../utils/Firebase'
 import api from '../../api/service'
 
-const RegisterScreen = () => {
+const ProfileScreen = () => {
      const [phone, setPhone] = useState("");
      const [name, setName] = useState("");
      const [password, setPassword] = useState("");
@@ -28,62 +28,8 @@ const RegisterScreen = () => {
      const context = useContext(GeneralContext)
 
      useEffect(() => {
-          signOutUser()
      }, []);
 
-     const handlerDisabledKeyboard = (text) => {
-          setPhone(PhoneFormatter(text))
-     }
-     const nextPage = (params) => {
-          navigation.navigate(routes.code, params)
-     }
-     const validateForm = async () => {
-          setIsLoading(true)
-          let isValid = validationFields()
-          if (isValid) {
-               await sendForm()
-          }
-          Keyboard.dismiss()
-          setIsLoading(false)
-
-
-     }
-
-     const sendForm = async () => {
-          try {
-               let phoneDDI = "55 " + phone
-               let user = { phone: phoneDDI, name, password }
-
-               const response = await api.post("/cache/users", user)
-
-               if (response && response.status == 200) {
-                    let res  = await requestCodePhone(phoneDDI)
-                    if (!res) {
-                         console.log("entrou no error");
-                         throw "auth/send-code-register"
-                    }
-                    nextPage({ phoneDDI, confirmCode: res, auth:false })
-
-               }
-          } catch (error) {
-               console.log("Error :" , error)
-               setWarning([true, exceptions(error, context), false])
-               return false 
-          }
-       
-
-     }
-
-
-
-     const validationFields = () => {
-          if (!phoneError[0] && !nameError[0] && !passwordError[0] && !confirmPasswordError[0]) {
-               if (name != "" && phone != "" && password != "" && confirmPassword != "" && (confirmPassword == password))
-                    return true
-          }
-          setWarning([true, "Ops! campos invalidos.", false])
-          return false
-     }
 
      return (
           <View style={styles.container}>
@@ -136,10 +82,10 @@ const RegisterScreen = () => {
                               messageError={confirmPasswordError[1]} />
                     </View>
                     <View style={styles.regionButton}>
-                         <Button onPress={validateForm} title="Proximo" />
+                         <Button onPress={validateForm} title="Atualizar" />
                     </View>
                </ScrollView >
           </View >
      )
 }
-export default RegisterScreen
+export default ProfileScreen

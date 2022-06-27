@@ -17,16 +17,9 @@ const style = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    regionCardsFirst: {
+    regionCardsDefault: {
         flexDirection: "row",
-        marginBottom:30,
-
-    },
-    regionCardsSecond: {
-       
-        flexDirection: "row",
-      
-
+        marginBottom:metrics.marginExtraLarge
     },
     regionButton:{
         flexDirection: "row",

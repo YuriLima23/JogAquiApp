@@ -1,36 +1,7 @@
 import messaging, { firebase } from '@react-native-firebase/messaging';
-import Firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
-import configFirebase from "../../google-services.json"
-import { setItem } from '../cache/storage';
-import { storageLabel } from '../../config/configs';
 import PushNotification from 'react-native-push-notification';
-import { routes } from '../routes/routes';
-import { CommonActions } from '@react-navigation/native';
-import { routesSignIn } from '../routes/stackHome';
 
-let firebaseApp = null
-
-export const authFirebase = async () => {
-    // try {
-    //     if (Firebase.apps.length == 0) {
-    //         firebaseApp = await Firebase.initializeApp(configFirebase)
-    //     } else {
-    //         firebaseApp = Firebase.app()
-    //     }
-    //    // const response = await (await auth().signInAnonymously())
-
-    //    // const fcm = await messaging().getToken()
-
-    //     setItem(storageLabel.token_user_firebase, response.user.uid)
-    //     setItem(storageLabel.fcm, fcm)
-
-    //     return response
-    // } catch (error) {
-    //     console.log('error fiurebase :', error)
-    //     return null
-    // }
-}
 
 export const listeningEventMessage = async () => {
     try {
@@ -54,8 +25,7 @@ export const requestCodePhone = async (phone) => {
     if (phone == "" || !phone) throw "Telefone invalido."
     phone = phone.replace(/\D/g, "")
     console.log('phone', phone)
-    await auth().signOut()
-
+    await logoutAuthFirebase()
     const response = await auth().signInWithPhoneNumber("+" + phone)
     console.log("RESPOSTA : ", response)
     if (!response) {
@@ -64,7 +34,13 @@ export const requestCodePhone = async (phone) => {
     return response
 
 }
-
+export const logoutAuthFirebase = async () => {
+    try {
+        await auth().signOut()
+    } catch (error) {
+        console.log('Erro ao deslogar o usuario firebase', error)
+    }
+}
 export const listenerAuth = (listnerAuthFn) => {
     try {
         return auth().onAuthStateChanged(listnerAuthFn);
@@ -109,12 +85,16 @@ export const exceptions = (exception, context) => {
             return "Sessão expirada, faça login novamente"
         case "auth/invalid-login":
             return "Falha ao autenticar"
+        case "auth/invalid-login-user-not-exist":
+            return "Falha ao autenticar, usuario não existe"
         case "auth/invalid-login-server":
             return "Erro no servidor, tente novamente mais tarde !"
         case "auth/token_invalid":
             return "Token invalido!"
         case "solicitation/error-create":
             return "Erro ao criar sua solicitação!"
+        case "wallet/error-recover":
+            return "Erro ao recuperar os dados da carteira !"
         case "auth/invalid-phone-number":
             return "Numero de telefone não identificado!"
         case "solicitation/types-recicles-invalid":

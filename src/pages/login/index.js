@@ -11,7 +11,7 @@ import Title from '../../components/title/Title'
 import api from '../../api/service'
 import endpoints from '../../api/endpoints'
 import GeneralContext from '../../contexts/generalContext'
-import { checkPhoneFirebase, exceptions, requestCodePhone } from '../../utils/Firebase'
+import { checkPhoneFirebase, exceptions, logoutAuthFirebase, requestCodePhone } from '../../utils/Firebase'
 import { setItem } from '../../cache/storage'
 import { storageLabel } from '../../../config/configs'
 
@@ -28,7 +28,7 @@ const LoginScreen = () => {
      const context = useContext(GeneralContext);
 
      useEffect(() => {
-
+          
      }, [])
      const handleChangePassword = () => {
           setChangeForPassword(!changeForPassword)
@@ -36,6 +36,7 @@ const LoginScreen = () => {
 
      const validateForm = async () => {
           context.setIsLoading(true)
+          await logoutAuthFirebase()
           try {
 
                const test = validationPhone(phone, setPhoneError)

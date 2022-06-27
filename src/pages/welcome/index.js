@@ -49,7 +49,7 @@ const WelcomeScreen = () => {
                     <Title view={false}>O que deseja fazer ?</Title>
                </View>
                <View style={styles.regionCards}>
-                    <View style={styles.regionCardsFirst}>
+                    <View style={styles.regionCardsDefault}>
                          <TouchableOpacity onPress={() => redirect(routes.recycle)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Reciclar</Text>
                          </TouchableOpacity>
@@ -58,15 +58,27 @@ const WelcomeScreen = () => {
                          </TouchableOpacity>
                     </View>
 
-                    <View style={styles.regionCardsSecond}>
+                    <View style={styles.regionCardsDefault}>
                          <TouchableOpacity onPress={() => redirect(routes.wallet)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
+                         </TouchableOpacity>
+                         <TouchableOpacity onPress={() => redirect(routes.wallet)} style={styles.regionButton}>
+                              <Text style={styles.centerTitle}>Perfil</Text>
+                         </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.regionCardsDefault}>
+                         
+                         <TouchableOpacity onPress={logout} style={styles.regionButton}>
+                              <Text style={styles.centerTitle}>Suporte</Text>
                          </TouchableOpacity>
                          <TouchableOpacity onPress={logout} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Sair</Text>
                          </TouchableOpacity>
 
                     </View>
+
+
 
                </View>
 

@@ -11,7 +11,7 @@ const style = StyleSheet.create({
     },
     regionName:{
         width:metrics.screenWidth,
-        height:metrics.heightScreen *0.2,
+        height:metrics.heightScreen *0.15,
         paddingTop:metrics.paddingExtraLarge,
         justifyContent:"center",
         alignItems:'center'
@@ -31,7 +31,7 @@ const style = StyleSheet.create({
     }, 
     regionList:{
      flex:1,
-     
+     justifyContent:'center'
     },
      
     regionNumberOfCollect:{
@@ -75,13 +75,18 @@ const style = StyleSheet.create({
     textAddressItem:{
         color:"#000",
         fontSize:20,
-        textAlign:"center",
     },
 
     textMoneyItem:{
         color:"#000",
         fontSize:20,
         textAlign:"center",
+    },
+    textNotFound:{
+        color:"#000",
+        fontSize:15,
+        textAlign:"center",
+        textAlignVertical:"center"
     },
 
 
