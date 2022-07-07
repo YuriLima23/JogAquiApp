@@ -1,7 +1,9 @@
+import { cpf as checkCpf } from 'cpf-cnpj-validator';
+
 export const validationPhone = (phone, setErrorState) => {
     phone = phone.replace(/\D/g, "")
     if (!phone || phone.length != 11) {
-        setErrorState([true,"Campo telefone invalido"])
+        setErrorState([true, "Campo telefone invalido"])
         return false
     }
     return true
@@ -23,7 +25,7 @@ export const validationName = (name = null, setErrorState) => {
 }
 
 export const validationPassword = (password = null, setErrorState) => {
-    
+
     if (password == null || password == "") {
         setErrorState([true, "Campo senha invalido !"])
         return false
@@ -39,8 +41,8 @@ export const validationPassword = (password = null, setErrorState) => {
 }
 
 
-export const validationConfimPassword= (confirmPassword = null, password, setErrorState) => {
-    
+export const validationConfimPassword = (confirmPassword = null, password, setErrorState) => {
+
     if (confirmPassword == null || confirmPassword == "") {
         setErrorState([true, "Campo confirmar senha  invalido !"])
         return false
@@ -56,10 +58,18 @@ export const validationConfimPassword= (confirmPassword = null, password, setErr
 }
 
 export const checkValue = (value) => {
-    if(value == "" || value == undefined || value == null){
+    if (value == "" || value == undefined || value == null) {
         return false
     }
     return true
 
+}
+
+export const checkValidEmail = (value) => {
+    return (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(value)
+}
+
+export const checkValidCpf = (cpf) => {
+    return checkCpf.isValid(cpf)
 }
 

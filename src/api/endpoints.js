@@ -11,4 +11,6 @@ export default endPoints = {
     makeSolicitation: "/solicitations",
     requestAddresses: "/solicitations/user",
     authWithoutPassword: "/login/code",
+    recoverUser: "/user",
+    updateUser: "/user/profile"
 }

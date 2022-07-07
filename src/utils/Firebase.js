@@ -96,7 +96,9 @@ export const exceptions = (exception, context) => {
         case "wallet/error-recover":
             return "Erro ao recuperar os dados da carteira !"
         case "auth/invalid-phone-number":
-            return "Numero de telefone não identificado!"
+            return "Numero de telefone não identificado!" 
+        case "user/error-recover":
+            return "Erro ao recuperar o usuario!"
         case "solicitation/types-recicles-invalid":
             return "Erro ao identificar os tipos de residuos selecionados!"
 

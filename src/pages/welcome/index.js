@@ -62,14 +62,14 @@ const WelcomeScreen = () => {
                          <TouchableOpacity onPress={() => redirect(routes.wallet)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Carteira</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity onPress={() => redirect(routes.wallet)} style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.profile)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Perfil</Text>
                          </TouchableOpacity>
                     </View>
 
                     <View style={styles.regionCardsDefault}>
                          
-                         <TouchableOpacity onPress={logout} style={styles.regionButton}>
+                         <TouchableOpacity onPress={() => redirect(routes.support)} style={styles.regionButton}>
                               <Text style={styles.centerTitle}>Suporte</Text>
                          </TouchableOpacity>
                          <TouchableOpacity onPress={logout} style={styles.regionButton}>

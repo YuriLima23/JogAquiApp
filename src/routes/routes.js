@@ -13,4 +13,6 @@ export const routes = {
     maps: "MapsScreen",
     dateTime: "DateTimeScreen",
     selectType: "SelectTypeScreen",
+    profile: "ProfileScreen",
+    support: "SupportScreen",
 }

@@ -35,6 +35,8 @@ import api from '../api/service';
 import { getItem } from '../cache/storage';
 import { storageLabel } from '../../config/configs';
 import WalletScreen from '../pages/wallet';
+import ProfileScreen from '../pages/profile';
+import SupportScreen from '../pages/support';
 
 const Stack = createNativeStackNavigator();
 
@@ -84,8 +86,10 @@ const StackHome = () => {
               <Stack.Screen name={routes.address} options={optionLogin} component={AddressScreen} />
               <Stack.Screen name={routes.dateTime} options={optionLogin} component={DateTimeScreen} />
               <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
+              <Stack.Screen name={routes.profile} options={optionLogin} component={ProfileScreen} />
               <Stack.Screen name={routes.demand} options={{ title: "Pedidos", header: (props) => <Header {...props}></Header> }} component={DemandScreen} />
               <Stack.Screen name={routes.recycle} options={{ headerShown: false }} component={RecycleScreen} />
+              <Stack.Screen name={routes.support} options={optionLogin} component={SupportScreen} />
 
             </>
             :
