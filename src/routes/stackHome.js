@@ -82,14 +82,14 @@ const StackHome = () => {
           context.isLogged == 1 ?
             <>
               <Stack.Screen name={routes.welcome} options={{ headerShown: false }} component={WelcomeScreen} />
-              <Stack.Screen name={routes.wallet} options={optionLogin} component={WalletScreen} />
-              <Stack.Screen name={routes.address} options={optionLogin} component={AddressScreen} />
-              <Stack.Screen name={routes.dateTime} options={optionLogin} component={DateTimeScreen} />
+              <Stack.Screen name={routes.wallet} options={{ title: "Carteira", backgroundColor:colors.background}} component={WalletScreen} />
+              <Stack.Screen name={routes.address} options={{ title: "Endereço",}} component={AddressScreen} />
+              <Stack.Screen name={routes.dateTime} options={{ title: "Data e hora",}} component={DateTimeScreen} />
               <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
-              <Stack.Screen name={routes.profile} options={optionLogin} component={ProfileScreen} />
+              <Stack.Screen name={routes.profile} options={{ title: "Perfil",}} component={ProfileScreen} />
               <Stack.Screen name={routes.demand} options={{ title: "Pedidos", header: (props) => <Header {...props}></Header> }} component={DemandScreen} />
               <Stack.Screen name={routes.recycle} options={{ headerShown: false }} component={RecycleScreen} />
-              <Stack.Screen name={routes.support} options={optionLogin} component={SupportScreen} />
+              <Stack.Screen name={routes.support} options={{ title: "Suporte",}} component={SupportScreen} />
 
             </>
             :
