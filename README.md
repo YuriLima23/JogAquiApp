@@ -40,12 +40,29 @@ No Back-End utiliza-se a tecnologia  NodeJS e Prisma. Para gerenciar as informa�
 
 ### Modelo ER
 
+O projeto contém 7 entidades base, onde cada uma contém seus principais atributos e seus respectivos relacionamentos.
+ - Entidade **User**, essa é uma tabela que permite que todo o seu sistema e ambiente exista e funcione , contém 10 atributos básicos e tem por objetivo armazenar as informações de cada usuário cadastrado no sistema.
+- **Solititation**, é por ela que o sistema criará as solicitações de recolhimento de resíduos, contém também 10 atributos, esta entidade se relaciona com  **History**.
+- **History**, esta tabela será vital para armazenar o histórico de solicitações, importante lembrar que essa forma não é a melhor forma de gerenciar histórico de dados, mas para o sistema proposto ela se encaixa adequadamente.
+- **Wallet** é uma tabela com 6 atributos, relacionada diretamente com a entidade **User**, o objetivo da referida tabela é salvar os dados dos valores de cada usuário durante uma faixa etária de tempo.
+- Por último a tabela **Support**, esta tabela busca armazenar solicitações de usuários que tenham dúvidas, sugestões ou críticas. 
+
 <img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/ModeloER.png" width=600 align="center"/>
 
 ### Telas
+Protótipo das telas.
+
+<a><img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/login-1.png" width=200 align="left"/></a>
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/inicial-1.png" width=200 align="center"/>
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/menu-1.png" width=200 align="left"/>
+
+<a><img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/reciclaveis-1.png" width=200 align="left"/></a>
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/mapa-1.png" width=200 align="center"/>
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/mapa-1-1.png" width=200 align="left"/>
+
 
 ## Contribuição
-Se você deseja contribuir com o projeto, adicionando novas funcionalidades, revisando o código ou propondo modificações e melhorias, consulte este [GUIA - EM BREVE] para propor sua contribuição.
+Se você deseja contribuir com o projeto, adicionando novas funcionalidades, revisando o código ou propondo modificações e melhorias, consulte este [GUIA](https://github.com/YuriLima23/JogAquiApp/blob/dev/CONTRIBUTING.md) para propor sua contribuição.
 
 ## Créditos
 Se você quiser citar este projeto, você pode citá-lo como:
