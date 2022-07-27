@@ -2,7 +2,7 @@
 ## Um Aplicativo que Busca Gerenciar a Coleta de Resíduos no Município de Bagé
 
 <a href="https://github.com/YuriLima23/JogAquiApp/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/YuriLima23/JogAquiApp"></a>
-<img src="https://img.shields.io/static/v1?label=version&message=v1.0.1&color=orange&style=flat"/>
+<img src="https://img.shields.io/static/v1?label=version&message=v0.1.1&color=orange&style=flat"/>
 <img src="https://img.shields.io/static/v1?label=build&message=passing&color=success&style=flat"/>
 <a href="https://github.com/YuriLima23/JogAquiApp/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/YuriLima23/JogAquiApp"></a>
 <a href="https://github.com/YuriLima23/JogAquiApp/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YuriLima23/JogAquiApp"></a>
@@ -26,6 +26,21 @@ instituições por ventura envolvidas e o cidadão, tudo através do APP **JogaA
 - Desenvolver um modelo de negócio onde haja geração de renda mútua tanto pra quem recolhe e trabalha na reciclagem quanto para quem disponibiliza o resíduo.
 
 ### Funcionalidades
+O aplicativo prevê uma séria de funcionalidades. Um breve visão sobre as funcionalidades poder ser observado no diagrama de casos de uso abaixo:
+
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/DCU.png" width=700 align="center"/>
+
+### Arquitetura
+
+A  estrutura do projeto foi desenvolvida na arquitetura *API REST* (Interface de Programação de Aplicações), sendo definido um Back-End para vários Front-Ends. O Front-End escolhido para este projeto consiste na criação de interfaces para uma a aplicação móvel, importante destacar que este projeto não limitou-se apenas a um Front-End, futuramente poderão ser desenvolvidas mais aplicações Front-Ends utilizando o mesmo Back-End com pouquíssimas alterações ou até mesmo sem alterações.
+
+No Back-End utiliza-se a tecnologia  NodeJS e Prisma. Para gerenciar as informações, optou-se por utilizar um SGBD, O Sistema de gerenciamento de Banco de Dados (SBGD), no caso o PostgreSQL. A aplicação móvel foi desenvolvida utilizando-se o framework React Native.
+
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/Arq.png" width=600 align="center"/>
+
+### Modelo ER
+
+<img src="https://github.com/YuriLima23/ImagesJogaAqui/blob/main/ModeloER.png" width=600 align="center"/>
 
 ### Telas
 
@@ -44,7 +59,7 @@ Uma entrada BibTeX para usuários LaTeX é:
     @Misc {jogaAqui,
      title = {JogaAqui: Um Aplicativo que Busca Gerenciar a Coleta de Res{\'i}duos no Munic{\'i}pio de Bag{\'e}},
      author = {Lima, Y{\'u}ri Ramos. e Silva,Rodrigo Rosa da.},
-     note= {vers{\~a}o 1.0.1},
+     note= {vers{\~a}o 0.1.1},
      year = {2022},
      url = {https://github.com/YuriLima23/JogAquiApp}
      }
