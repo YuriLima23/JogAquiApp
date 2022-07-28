@@ -8,8 +8,10 @@
 <a href="https://github.com/YuriLima23/JogAquiApp/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/YuriLima23/JogAquiApp"></a>
 ![pull request closed](https://img.shields.io/github/issues-pr-closed/YuriLima23/JogAquiApp?color=g)
 ![size](https://img.shields.io/github/repo-size/YuriLima23/JogAquiApp)
+![file](https://img.shields.io/github/directory-file-count/YuriLima23/JogAquiApp)
 ![c](https://img.shields.io/github/contributors/YuriLima23/JogAquiApp?color=g)
 [![l](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+![lc](https://img.shields.io/github/last-commit/YuriLima23/JogAquiApp)
 
 
 **Project Status: In development** :warning:
