@@ -98,3 +98,30 @@ Siga estas etapas para que sua contribuição seja considerada pelos mantenedore
 * Depois de enviar sua solicitação de pull, verifique se todas as [verificações de status](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) estão passando <details><summary>E se as verificações de status estiverem falhando?</summary> Se uma verificação de status estiver falhando e você acreditar que a falha não está relacionada à sua alteração, por favor, deixe um comentário na solicitação de pull explicando por que você acredita que a falha não está relacionada. Um mantenedor executará novamente a verificação de status para você. Se concluirmos que a falha foi um falso positivo, abriremos um problema para rastrear esse problema com nosso conjunto de verificação de status.</details>
 
 Embora os pré-requisitos acima devam ser atendidos antes da revisão de sua solicitação pull, os revisores podem solicitar que você conclua trabalhos de design, testes ou outras alterações adicionais antes que sua solicitação pull possa ser aceita.
+
+## Guia de estilos
+
+### Git Commit Messages
+
+Mensagens de confirmação do Git
+* Use o tempo presente ("Add feature" não "Added feature")
+* Use o modo imperativo ("Mover cursor para..." e não "Move cursor para...")
+* Limite a primeira linha a 72 caracteres ou menos
+* Referencie problemas e pull requests livremente após a primeira linha
+* Ao alterar apenas a documentação, inclua `[Up Doc]` no título do commit
+* Considere iniciar a mensagem de confirmação com um emoji aplicável:
+    * :art: `:art:` ao melhorar o formato/estrutura do código
+    * :racehorse: `:racehorse:` ao melhorar o desempenho
+    * :non-potable_water: `:non-potable_water:` ao conectar vazamentos de memória
+    * :memo: `:memo:` ao escrever documentos
+    * :penguin: `:penguin:` ao consertar algo no Linux
+    * :apple: `:apple:` ao consertar algo no macOS
+    * :checkered_flag: `:checkered_flag:` ao consertar algo no Windows
+    * :bug: `:bug:` ao corrigir um bug
+    * :fire: `:fire:` ao remover código ou arquivos
+    * :green_heart: `:green_heart:` ao corrigir a compilação
+    * :white_check_mark: `:white_check_mark:` ao adicionar testes
+    * :lock: `:lock:` ao lidar com segurança
+    * :arrow_up: `:arrow_up:` ao atualizar dependências
+    * :arrow_down: `:arrow_down:` ao fazer downgrade de dependências
+    * :shirt: `:shirt:` ao remover avisos
