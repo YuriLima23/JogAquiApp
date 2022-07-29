@@ -125,3 +125,57 @@ Mensagens de confirmação do Git
     * :arrow_up: `:arrow_up:` ao atualizar dependências
     * :arrow_down: `:arrow_down:` ao fazer downgrade de dependências
     * :shirt: `:shirt:` ao remover avisos
+* Use Markdown
+
+## Notas Adicionais
+### Etiquetas de emissão e pull request
+
+Esta seção lista os rótulos que usamos para nos ajudar a rastrear e gerenciar problemas e pull requests. 
+
+[A pesquisa do GitHub](https://docs.github.com/pt/search-github/searching-on-github/searching-issues-and-pull-requests) facilita o uso de rótulos para encontrar grupos de problemas ou pull requests nos quais você está interessado. Para ajudá-lo a encontrar problemas e pull requests, cada rótulo é listado com links de pesquisa para localizar itens abertos. Recomendamos que você leia sobre outros filtros de pesquisa que o ajudarão a escrever consultas mais focadas.
+
+Os rótulos são agrupados livremente por sua finalidade, mas não é necessário que cada problema tenha um rótulo de cada grupo ou que um problema não possa ter mais de um rótulo do mesmo grupo.
+
+Por favor, abra um problema em atom/atomse você tiver sugestões para novos rótulos, e se você notar que alguns rótulos estão faltando em alguns repositórios, por favor, abra um problema nesse repositório.
+
+#### Tipo de Emissão e Estado de Emissão
+| Rótulo  | Descrição |
+| --- | --- |
+| `enhancement` | Solicitações de recursos.. |
+| `bug` | Bugs ou relatórios confirmados que são muito prováveis de serem bugs. |
+| `question` | Perguntas mais do que relatórios de bugs ou solicitações de recursos (por exemplo, como faço o X). |
+| `feedback` | Feedback geral mais do que relatórios de bugs ou solicitações de recursos. |
+| `help-wanted` | A equipe principal gostaria da ajuda da comunidade para resolver esses problemas.. |
+| `beginner` | Questões menos complexas que seriam boas primeiras questões para trabalhar para usuários que desejam contribuir com o projeto. |
+| `more-information-needed` | Mais informações precisam ser coletadas sobre esses problemas ou solicitações de recursos (por exemplo, etapas para reproduzir). |
+| `needs-reproduction` | Erros prováveis, mas não foram reproduzidos de forma confiável. |
+| `blocked` | Problemas bloqueados em outros problemas. |
+| `duplicate` | Problemas que são duplicatas de outros problemas, ou seja, já foram relatados anteriormente. |
+| `wontfix` | A equipe principal decidiu não corrigir esses problemas por enquanto, seja porque eles estão funcionando conforme o esperado ou por algum outro motivo. |
+| `invalid` | Problemas que não são válidos (por exemplo, erros do usuário). |
+
+#### Categorias de Tópicos
+| Rótulo | Descrição |
+| --- | --- |
+| `windows` | Relacionado à execução no Windows. |
+| `linux` | Relacionado à execução no Linux. |
+| `mac` | Relacionado à execução no macOS. |
+| `documentation` | Relacionado a qualquer tipo de documentação. |
+| `performance` | Relacionado ao desempenho. |
+| `security` | Relacionado à segurança. |
+| `ui` | Relacionado ao design visual. |
+| `api` | Relacionado às APIs públicas. |
+| `uncaught-exception` | Problemas sobre exceções não capturadas. |
+| `crash` | Relatos de completo travamento. |
+| `network` | Relacionado a problemas de rede ou trabalho com arquivos remotos.  |
+| `git` | Relacionado à funcionalidade do Git (por exemplo, problemas com arquivos gitignore ou com a exibição do status correto do arquivo). |
+
+#### Rótulos de Solicitação de Pull
+
+| Rótulo | Descrição |
+| --- | --- |
+| `work-in-progress` | Pull requests que ainda estão sendo trabalhados, mais mudanças virão. |
+| `needs-review` | Solicitações de pull que precisam de revisão de código e aprovação dos mantenedores ou da equipe principal. |
+| `under-review` | Solicitações de pull sendo revisadas pelos mantenedores ou pela equipe principal |
+| `requires-changes` | Solicitações pull que precisam ser atualizadas com base nos comentários de revisão e, em seguida, revisadas novamente. |
+| `needs-testing` | Solicitações de pull que precisam de teste manual. |
