@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, PermissionsAndroid, ScrollView, KeyboardAvoidingView, KeyboardAvoidingViewBase, Image } from 'react-native'
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
@@ -12,10 +12,17 @@ import { routes } from '../../routes/routes';
 import api from '../../api/service';
 import endpoints from '../../api/endpoints';
 import { formatDate, formateStringDateAndTime } from '../../utils/formatter';
+import { EInitialStatus } from '../../utils/enums';
+import CardInfo from '../../components/markerInfo/CardInfo';
+import { checkValue } from '../../utils/validation';
+import { exceptions } from '../../utils/Firebase';
+import GeneralContext from '../../contexts/generalContext';
 
 const RecycleScreen = () => {
      const navigation = useNavigation()
+     const context = useContext(GeneralContext)
      const [location, setLocation] = useState({ latitude: -23.5639552, longitude: -46.6559679 })
+     const [markerInfo, setMarkerInfo] = useState()
      const [requestAddresses, setRequestAddresses] = useState([])
      useEffect(() => {
           const unsubscribe = navigation.addListener('focus', () => {
@@ -77,9 +84,30 @@ const RecycleScreen = () => {
                console.log('Error maps', error)
           }
      }
+     const removeSolicitation = async () => {
+          context.setIsLoading(true)
+          console.log("Chegou aqui");
+          try {
+               if (!checkValue(markerInfo)) {
+                    throw "solicitation/error-remove-solicitation"
+               }
+               const response = await api.delete(`${endpoints.removeSolicitation}/${markerInfo.id}`)
+               if (response.status == 200) {
+                    context.setWarning([true, "Solicitação removida com sucesso", true])
+                    getRequestsSolicitations()
+               } else {
+                    throw "solicitation/error-remove-solicitation"
+               }
+          } catch (error) {
+               console.log('Error remove solicitação', error)
+               context.setWarning([true, exceptions(error), false])
+          }
+          context.setIsLoading(false)
+     }
 
      return (
           <View style={styles.container}>
+               {markerInfo && <CardInfo info={markerInfo} fn={() => removeSolicitation()} ></CardInfo>}
                <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
@@ -93,14 +121,25 @@ const RecycleScreen = () => {
                          longitudeDelta: 0.0121,
                     }}
                >
+                    <Marker  title='Você esta aqui' pinColor='indigo' coordinate={{
+                         latitude: location.latitude,
+                         longitude: location.longitude,
+                         latitudeDelta: 0.015,
+                         longitudeDelta: 0.0121,
+                         
+                    }} />
                     {
                          requestAddresses.map((item) => (
-                              <Marker key={item.id} coordinate={{
-                                   latitude: item.latitude,
-                                   longitude: item.longitude,
-                                   latitudeDelta: 0.015,
-                                   longitudeDelta: 0.0121,
-                              }} title={item.status} description={`Dia : ${formateStringDateAndTime(item.date_of_collect).date} as ${formateStringDateAndTime(item.date_of_collect).time}:  `} />
+                              item.status != EInitialStatus.Finish &&
+                              <TouchableOpacity key={item.id}>
+                                   <Marker onPress={() => { setMarkerInfo(item); context.setShowCardInfo(true) }} coordinate={{
+                                        latitude: item.latitude,
+                                        longitude: item.longitude,
+                                        latitudeDelta: 0.015,
+                                        longitudeDelta: 0.0121,
+                                   }} />
+                                   {/* title={item.status} description={`Dia : ${formateStringDateAndTime(item.date_of_collect).date} as ${formateStringDateAndTime(item.date_of_collect).time}:  `}  */}
+                              </TouchableOpacity>
                          ))
                     }
 

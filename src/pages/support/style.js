@@ -7,7 +7,6 @@ import { fonts } from '../../../globalStyle/fonts'
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background,
         margin: metrics.marginExtraLarge
     },
     regionPicker: {
@@ -18,7 +17,7 @@ const style = StyleSheet.create({
         
     },
     regionDescription: {
-        flex: 1,
+       flex:1,
         borderWidth: 1
     },
     description: {

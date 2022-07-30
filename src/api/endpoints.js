@@ -12,5 +12,7 @@ export default endPoints = {
     requestAddresses: "/solicitations/user",
     authWithoutPassword: "/login/code",
     recoverUser: "/user",
-    updateUser: "/user/profile"
+    updateUser: "/user/profile",
+    sendReport: "/supports",
+    removeSolicitation: "/solicitations",
 }

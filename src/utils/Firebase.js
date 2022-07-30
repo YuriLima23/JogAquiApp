@@ -65,12 +65,13 @@ export const signOutUser = async () => {
 
 export const exceptions = (exception, context) => {
 
-    console.log("MOTIVO ERRO : ", exception)
-    let error = exception.code || ""
+    let error = exception.code || exception || ""
+    console.log("MOTIVO ERRO : ", error)
 
     if (exception.response) {
         error = exception.response.data
     }
+
     switch (error) {
         case "auth/too-many-requests":
             return "Você solicitou muitas vezes o codigo, aguarde 24 horas"
@@ -96,12 +97,17 @@ export const exceptions = (exception, context) => {
         case "wallet/error-recover":
             return "Erro ao recuperar os dados da carteira !"
         case "auth/invalid-phone-number":
-            return "Numero de telefone não identificado!" 
+            return "Numero de telefone não identificado!"
         case "user/error-recover":
             return "Erro ao recuperar o usuario!"
         case "solicitation/types-recicles-invalid":
             return "Erro ao identificar os tipos de residuos selecionados!"
-
+        case "support/invalid-data":
+            return "Todos os campos são obrigatorios!"
+        case "support/error-send_data":
+            return "Erro ao enviar a solicitação de suporte, tente novamente mais tarde !"
+        case "solicitation/error-remove-solicitation":
+            return "Erro ao carregar os dados do marcador."
         default:
             return "Algo de errado aconteceu, tente novamente mais tarde"
     }
