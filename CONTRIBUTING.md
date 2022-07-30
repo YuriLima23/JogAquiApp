@@ -26,7 +26,7 @@ Antes de criar relatórios de bugs, verifique se já existe uma issues aberta, p
 
 ### Como faço para enviar um relatório de bug (bom)?
 
-Bugs são rastreados como [problemas do GitHub](https://guides.github.com/features/issues/). Forneça as seguintes informações preenchendo o [modelo]() **Criar Modelo** .
+Bugs são rastreados como [problemas do GitHub](https://guides.github.com/features/issues/). Forneça as seguintes informações preenchendo o [modelo](https://github.com/YuriLima23/JogAquiApp/blob/dev/PULL_REQUEST_TEMPLATE.md).
 
 Explique o problema e inclua detalhes adicionais para ajudar os mantenedores a reproduzir o problema:
 
