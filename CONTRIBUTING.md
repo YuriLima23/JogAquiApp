@@ -16,7 +16,7 @@ Este projeto e todos os participantes dele são regisdos pelo [Código de Condut
 
 Esta seção orienta você no envio de um relatório de bug. Seguir essas diretrizes ajuda os mantenedores e a comunidade a entender seu relatório :pencil:, reproduza o comportamento :computer: :computer: e encontre relatórios relacionados :mag_right:.
 
-Antes de criar relatórios de bugs, verifique se já existe uma issues aberta, pois você pode descobrir que não precisa criar um. Ao criar um relatório de bug, inclua o máximo de detalhes possível. Preencha o [modelo obrigatório]() **Criar modelo** , as informações solicitadas nos ajudam a resolver problemas mais rapidamente.
+Antes de criar relatórios de bugs, verifique se já existe uma issues aberta, pois você pode descobrir que não precisa criar um. Ao criar um relatório de bug, inclua o máximo de detalhes possível. Preencha o [modelo obrigatório](https://github.com/YuriLima23/JogAquiApp/blob/dev/PULL_REQUEST_TEMPLATE.md), as informações solicitadas nos ajudam a resolver problemas mais rapidamente.
 
 > **Observação:** se você encontrar um problema **Fechado** que pareça ser o mesmo que você está enfrentando, abra um novo problema e inclua um link para o problema original no corpo do novo..
 
@@ -26,7 +26,7 @@ Antes de criar relatórios de bugs, verifique se já existe uma issues aberta, p
 
 ### Como faço para enviar um relatório de bug (bom)?
 
-Bugs são rastreados como [problemas do GitHub](https://guides.github.com/features/issues/). Forneça as seguintes informações preenchendo o [modelo]() **Criar Modelo** .
+Bugs são rastreados como [problemas do GitHub](https://guides.github.com/features/issues/). Forneça as seguintes informações preenchendo o [modelo](https://github.com/YuriLima23/JogAquiApp/blob/dev/PULL_REQUEST_TEMPLATE.md).
 
 Explique o problema e inclua detalhes adicionais para ajudar os mantenedores a reproduzir o problema:
 
@@ -60,7 +60,7 @@ Inclua detalhes sobre sua configuração e ambiente:
 
 Esta seção orienta você no envio de uma sugestão de aprimoramento para o JogaAquiApp, incluindo recursos completamente novos e pequenas melhorias nas funcionalidades existentes. Seguir essas diretrizes ajuda os mantenedores e a comunidade a entender sua sugestãomemorandoe encontre sugestões relacionadas :mag_right:.
 
-Ao criar uma sugestão de aprimoramento, inclua o máximo de detalhes possível. Preencha o [modelo]() **Incluir modelo** , incluindo as etapas que você imagina que seguiria se o recurso que você está solicitando existisse.
+Ao criar uma sugestão de aprimoramento, inclua o máximo de detalhes possível. Preencha o [modelo](https://github.com/YuriLima23/JogAquiApp/blob/dev/PULL_REQUEST_TEMPLATE.md), incluindo as etapas que você imagina que seguiria se o recurso que você está solicitando existisse.
 
 #### Antes de enviar uma sugestão de aprimoramento
 * **Verifique se já existe um pacote que forneça esse aprimoramento.**
@@ -93,7 +93,7 @@ O processo aqui descrito tem vários objetivos:
 
 Siga estas etapas para que sua contribuição seja considerada pelos mantenedores:
 
-* Siga todas as instruções do [modelo]() **Incluir modelo**
+* Siga todas as instruções do [modelo](https://github.com/YuriLima23/JogAquiApp/blob/dev/PULL_REQUEST_TEMPLATE.md).
 * Siga os guias de estilo
 * Depois de enviar sua solicitação de pull, verifique se todas as [verificações de status](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks) estão passando <details><summary>E se as verificações de status estiverem falhando?</summary> Se uma verificação de status estiver falhando e você acreditar que a falha não está relacionada à sua alteração, por favor, deixe um comentário na solicitação de pull explicando por que você acredita que a falha não está relacionada. Um mantenedor executará novamente a verificação de status para você. Se concluirmos que a falha foi um falso positivo, abriremos um problema para rastrear esse problema com nosso conjunto de verificação de status.</details>
 
