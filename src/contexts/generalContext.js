@@ -14,6 +14,7 @@ const GeneralContext = createContext();
 export const GeneralContextProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [warning, setWarning] = useState([false, "", false]);
+    const [showCardInfo, setShowCardInfo] = useState(false);
     const [isLogged, setIsLogged] = useState(2);
     const [tokenUser, setTokenUser] = useState("");
     const [user, setUser] = useState("");
@@ -60,6 +61,8 @@ export const GeneralContextProvider = ({ children }) => {
             isLogged,
             setIsLogged,
             tokenUser,
+            showCardInfo,
+            setShowCardInfo,
             setTokenUser,
             logout,
             autenticate,

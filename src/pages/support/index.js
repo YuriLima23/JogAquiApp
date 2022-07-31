@@ -6,27 +6,51 @@ import { Picker } from '@react-native-picker/picker';
 import styles from './style'
 import GeneralContext from '../../contexts/generalContext'
 import Button from '../../components/button/Button';
+import { checkValue } from '../../utils/validation';
+import api from '../../api/service';
+import endpoints from '../../api/endpoints';
+import { exceptions } from '../../utils/Firebase';
 
 
 const SupportScreen = () => {
      const [subject, setSubject] = useState("");
      const [description, setDescription] = useState("");
-     const { setIsLoading, setWarning } = useContext(GeneralContext)
+     const context = useContext(GeneralContext)
      const navigation = useNavigation()
      const options = ["Duvida", "Sugestão", "Crítica"]
 
      const validateForm = async () => {
-          setIsLoading(true)
+          context.setIsLoading(true)
           try {
+               if(!checkValue(subject) || !checkValue(description) ){
+                    throw "support/invalid-data"
+               }
+               const response = await api.post(endpoints.sendReport,{
+                    subject,
+                    description
+               })
+
+               if(response.status != 200){
+                    throw "support/error-send_data"
+               }
+               cleanInputs()
+               context.setWarning([true, "Mensagem enviada com sucesso, aguarde  a resposta via email", true])
 
           } catch (error) {
                console.log('error support', error)
+               context.setWarning([true, exceptions(error), false])
+
           }
-          setIsLoading(false)
+          context.setIsLoading(false)
      }
 
+     const cleanInputs = () =>{
+          setDescription("")
+          setSubject("")
+     }
      return (
           <View style={styles.container}>
+                <CardInfo></CardInfo>
                <View style={styles.regionPicker}>
                     <Picker
                          selectedValue={subject}
@@ -45,7 +69,7 @@ const SupportScreen = () => {
                     </Picker>
                </View>
                <View style={styles.regionDescription}>
-                    <TextInput onChangeText={setDescription} value={description} numberOfLines={5} style={styles.description}></TextInput>
+                    <TextInput onChangeText={setDescription} multiline value={description} numberOfLines={5} style={styles.description}></TextInput>
                </View>
                <View style={styles.regionBtn}>
                     <Button onPress={validateForm} title="Enviar" />
