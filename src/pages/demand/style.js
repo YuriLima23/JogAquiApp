@@ -8,7 +8,8 @@ const style = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background,
-        alignItems:'center'
+        alignItems:'center',
+        justifyContent:"center"
     },
 
 
@@ -44,10 +45,15 @@ const style = StyleSheet.create({
     imageItem: {
         width:  metrics.widthScreen * 0.06,
         height: metrics.widthScreen * 0.06,
+        color:"#fff"
     }, 
     dateItem: {
         fontSize:fonts.large,
         color:colors.dark
+    },  
+    textNothing: {
+       fontSize:fonts.large,
+       justifyContent:"center"
     },
 
 

@@ -35,7 +35,7 @@ const CardInfo = ({info, fn}) => {
                         <View style={styles.regionCenter}>
                             <Text style={styles.titleInfo}>Status</Text>
                             <View style={styles.regionInfoCenter}>
-                                <Text style={styles.infoCenter}> Plastico, Ferro</Text>
+                                <Text style={styles.infoCenter}> {info.status}</Text>
                             </View>
                         </View>
                         <View style={styles.regionCenter}>

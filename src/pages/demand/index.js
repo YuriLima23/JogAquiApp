@@ -75,7 +75,11 @@ const DemandScreen = () => {
 
      return (
           <View style={styles.container}>
-               <FlatList data={demands} renderItem={(props) => <Item {...props}/>}  ></FlatList>
+               {demands.length > 0 ? <FlatList data={demands} renderItem={(props) => <Item {...props}/>}  /> : 
+               
+               <Text style={styles.textNothing}>Ops ! parece que você ainda não reciclou.</Text>
+               }
+               
           </View>
      )
 }

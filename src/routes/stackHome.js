@@ -55,12 +55,6 @@ const optionLogin = ({ navigation }) => {
   }
 }
 
-export const routesSignIn = (navigation, user) => {
-  //   navigation.dispatch(
-  //    navigation.popToTop()
-  // );
-}
-
 
 
 const StackHome = () => {
@@ -87,7 +81,7 @@ const StackHome = () => {
               <Stack.Screen name={routes.dateTime} options={{ title: "Data e hora",}} component={DateTimeScreen} />
               <Stack.Screen name={routes.selectType} options={optionLogin} component={SelectTypeScreen} />
               <Stack.Screen name={routes.profile} options={{ title: "Perfil",}} component={ProfileScreen} />
-              <Stack.Screen name={routes.demand} options={{ title: "Pedidos", header: (props) => <Header {...props}></Header> }} component={DemandScreen} />
+              <Stack.Screen name={routes.demand} options={{ title: "Pedidos"}} component={DemandScreen} />
               <Stack.Screen name={routes.recycle} options={{ headerShown: false }} component={RecycleScreen} />
               <Stack.Screen name={routes.support} options={{ title: "Suporte",}} component={SupportScreen} />
 
