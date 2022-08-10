@@ -50,7 +50,6 @@ const SupportScreen = () => {
      }
      return (
           <View style={styles.container}>
-                <CardInfo></CardInfo>
                <View style={styles.regionPicker}>
                     <Picker
                          selectedValue={subject}

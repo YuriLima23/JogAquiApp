@@ -21,11 +21,12 @@ const style = StyleSheet.create({
         marginBottom: 30,
         padding: 10,
         borderRadius: 40,
+        borderWidth:1,
         backgroundColor: colors.background
     },
     imageButtonRecicle: {
-        width: 50,
-        height: 50
+        width: 41.55,
+        height: 41.55
     }
 
 })
