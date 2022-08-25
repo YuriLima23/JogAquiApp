@@ -1,3 +1,4 @@
+
 # JogaAqui
 ## Um Aplicativo que Busca Gerenciar a Coleta de Resíduos no Município de Bagé
 
