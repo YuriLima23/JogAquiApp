@@ -34,19 +34,18 @@ const AddressScreen = () => {
      const context = useContext(GeneralContext);
      const contextSolicitation = useContext(CreateSolicitationContext);
 
-    
-     const nextPage = () => {
 
-          if(checkFields()){
-               
+     const nextPage = () => {
+          if (checkFields()) {
                contextSolicitation.setSolicitation({
-                     number,
-                     address : addressSelected[0],
-                     complement
-                    })
+                    number,
+                    address: addressSelected[0],
+                    complement
+               })
                navigation.navigate(routes.dateTime)
           }
      }
+
      const AddressItem = ({ item }) => {
           const selectItem = () => {
                setDataAddress([])
@@ -71,7 +70,7 @@ const AddressScreen = () => {
                const response = await api.post(endpoints.findAddresses, {
                     address: addressSelected[0]
                })
-               if(response.data.length <= 0){
+               if (response.data.length <= 0) {
                     context.setWarning([true, "Endereço não encontrado", false])
                }
                setDataAddress(response.data || [])
@@ -83,26 +82,22 @@ const AddressScreen = () => {
           setLoadingAddress(false)
      }
 
-     const resetAddressess = (text) =>{
-          if(dataAddress.length > 0){
+     const resetAddressess = (text) => {
+          if (dataAddress.length > 0) {
                setDataAddress([])
           }
-
-          if(text.match(/\d/)){
+          if (text.match(/\d/)) {
                context.setWarning([true, "Endereço deve conter apenas letras", false])
           }
-
-
-
           setAddressSelected([removeNumbers(text), null])
      }
 
-     const checkFields = () =>{
-          if(!addressSelected[1]){
+     const checkFields = () => {
+          if (!addressSelected[1]) {
                context.setWarning([true, "Selecione um endereço valido", false])
                return false
           }
-          else if(!checkValue(number)){
+          else if (!checkValue(number)) {
                setNumberError([true, "Campo número obrigatório"])
                return false
           }
@@ -146,7 +141,7 @@ const AddressScreen = () => {
                          error={numberError[0]}
                          keyboardType={"phone-pad"}
                          onFocus={() => setNumberError([false, ""])}
-                         onBlur={() => setNumberError([false, ""]) }
+                         onBlur={() => setNumberError([false, ""])}
                          placeholder="numero"
                          messageError={numberError[1]} />
 
@@ -154,7 +149,7 @@ const AddressScreen = () => {
                          onChangeText={(text) => setComplement(text)}
                          value={complement}
                          placeholder="Apartamento  123"
-                         />
+                    />
                     <View style={styles.regionButton}>
                          <Button onPress={nextPage} title="Proximo" />
                     </View>

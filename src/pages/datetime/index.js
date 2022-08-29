@@ -18,13 +18,6 @@ const DateTimeScreen = () => {
      const [showPickerDate, setShowPickerDate] = useState(false);
      const [showPickerTime, setShowPickerTime] = useState(false);
 
-     const [dataAddress, setDataAddress] = useState([]);
-
-
-     const [timeError, setTimeError] = useState([false, ""]);
-     const [periodError, setPeriodError] = useState([false, ""]);
-
-     let dateNow = new Date()
      const navigation = useNavigation()
      const contextSolicitation = useContext(CreateSolicitationContext)
      useEffect(() => {

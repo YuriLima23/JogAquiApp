@@ -77,8 +77,9 @@ const RecycleScreen = () => {
 
      const getRequestsSolicitations = async () => {
           try {
-               console.log('Atualizou mapa')
                const response = await api.get(endpoints.requestAddresses)
+               console.log('Atualizou mapa', response.data)
+
                setRequestAddresses(response.data)
           } catch (error) {
                console.log('Error maps', error)
@@ -104,10 +105,14 @@ const RecycleScreen = () => {
           }
           context.setIsLoading(false)
      }
+     
+     const updateSolicitation = (route, data) => {
+          navigation.navigate(route, {  data })
+     }
 
      return (
           <View style={styles.container}>
-               {markerInfo && <CardInfo info={markerInfo} fn={() => removeSolicitation()} ></CardInfo>}
+               {markerInfo && <CardInfo info={markerInfo} updateFn={(route, data) => updateSolicitation(route, data)} removeFn={() => removeSolicitation()} ></CardInfo>}
                <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
@@ -121,12 +126,12 @@ const RecycleScreen = () => {
                          longitudeDelta: 0.0121,
                     }}
                >
-                    <Marker  title='Você esta aqui' pinColor='indigo' coordinate={{
+                    <Marker title='Você esta aqui' pinColor='indigo' coordinate={{
                          latitude: location.latitude,
                          longitude: location.longitude,
                          latitudeDelta: 0.015,
                          longitudeDelta: 0.0121,
-                         
+
                     }} />
                     {
                          requestAddresses.map((item) => (

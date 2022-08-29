@@ -45,7 +45,7 @@ const style = StyleSheet.create({
     imageItem: {
         width:  metrics.widthScreen * 0.06,
         height: metrics.widthScreen * 0.06,
-        color:"#fff"
+      
     }, 
     dateItem: {
         fontSize:fonts.large,

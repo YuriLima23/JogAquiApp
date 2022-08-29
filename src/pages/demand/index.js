@@ -49,7 +49,7 @@ const DemandScreen = () => {
      }
 
      const Item = ({ item }) => {
-
+         
 
           return (
                <View key={item.id} style={styles.containerItem}>
@@ -60,10 +60,10 @@ const DemandScreen = () => {
                     <View style={styles.regionItem}>
                        
                          <View style={styles.regionImages}>
-                              <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
-                              <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
-                              <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
-                              <Image source={require("../../../images/Recicle.png")} style={styles.imageItem} />
+                              {item.types_recicles.map((type) => (
+                              <Image source={require("../../../images/RecicleTransparent.png")}  style={{...styles.imageItem, backgroundColor:type.color}} />
+                              ))}
+                            
                          </View>
                          <Text style={styles.dateItem}>{formatDate(item.date_of_collect)}</Text>
                     </View>

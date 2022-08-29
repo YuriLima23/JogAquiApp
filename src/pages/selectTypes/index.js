@@ -91,7 +91,7 @@ const SelectTypeScreen = () => {
                          arrayTypes.map((type) => (
                               <TouchableOpacity key={type.id} onPress={() => selectItem(type.id)}  >
                                    <View style={!isChecked(type.id) ? styles.regionType : { ...styles.regionType, backgroundColor: type.color }}>
-                                        <Image style={styles.imageTrash} source={require("../../../images/trash.png")} />
+                                        <Image style={styles.imageTrash} source={require("../../../images/trashTransparent2.png")} />
                                         <Text style={styles.label}>{type.name}</Text>
                                    </View>
                               </TouchableOpacity>
